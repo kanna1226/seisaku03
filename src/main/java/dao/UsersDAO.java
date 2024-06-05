@@ -16,9 +16,8 @@ public class UsersDAO {
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
-	User loginUser = null;
-	
 	public User findByLogin(Login login) {
+		User loginUser = null;
 		try {
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {

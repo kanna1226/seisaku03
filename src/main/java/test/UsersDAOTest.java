@@ -18,7 +18,7 @@ public class UsersDAOTest {
 		Login login = new Login("minato", "1234");
 		UsersDAO dao = new UsersDAO();
 		User result = dao.findByLogin(login);
-		LocalDate dateOfBirth = LocalDate.of(2001, 5, 30);
+		LocalDate dateOfBirth = LocalDate.of(2001, 5, 01);
 		if (result != null &&
 				result.getUserId().equals("minato") &&
 				result.getPass().equals("1234") &&
