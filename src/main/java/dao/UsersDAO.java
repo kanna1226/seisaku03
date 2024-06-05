@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -37,7 +38,8 @@ public class UsersDAO {
 				String pass = rs.getString("PASS");
 				String userName = rs.getString("USER_NAME");
 				String mail = rs.getString("MAIL");
-				LocalDate dateOfBirth = LocalDate.now(); //後で変更
+				Date dateOfBirth_date = rs.getDate("DATEOFBIRTH");
+				LocalDate dateOfBirth = dateOfBirth_date.toLocalDate();
 				loginUser = new User(userId, pass, userName, mail, dateOfBirth);
 			}
 		} catch (SQLException e) {
@@ -45,6 +47,37 @@ public class UsersDAO {
 			return null;
 		}
 		return loginUser;
+	}
+	
+	public boolean registerUser(User user) {
+		try {
+			Class.forName("org.h2.Drier");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException("JDBCドライバを読み込めませんでした");
+		}
+		
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "INSERT INTO USERS (USER_ID, PASS, USER_NAME, MAIL, DATEOFBIRTH) VALUES (?, ?, ?, ?, ?)";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
+			
+			
+			pStmt.setString(1, user.getUserId());
+			pStmt.setString(2, user.getPass());
+			pStmt.setString(3, user.getUserName());
+			pStmt.setString(4, user.getMail());
+			Date dateOfBirth_date = java.sql.Date.valueOf(user.getDateOfBirth());
+			pStmt.setDate(5, dateOfBirth_date);
+			
+			int result = pStmt.executeUpdate();
+			if(result != 1) {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	}
