@@ -34,7 +34,7 @@ public class RegisterTasksDAO {
 			Timestamp tenativeStartDateTime = Timestamp.valueOf(task.getTentativeStartDateTime());
 			pStmt.setTimestamp(5, tenativeStartDateTime);
 			Timestamp tenativeEndDateTime = Timestamp.valueOf(task.getTentativeEndDateTime());
-			pStmt.setTimestamp(5, tenativeEndDateTime);
+			pStmt.setTimestamp(6, tenativeEndDateTime);
 			
 			int result = pStmt.executeUpdate();
 			if (result != 1) {
@@ -56,7 +56,7 @@ public class RegisterTasksDAO {
 		}
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "UPDATE TASKS(START_DATETIME, END_DATETIME) SET(?, ?) WHERE TASK_ID = ?";
+			String sql = "UPDATE TASKS SET(START_DATETIME, END_DATETIME) = (?, ?) WHERE TASK_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			Timestamp startDateTime = Timestamp.valueOf(task.getStartDateTime());
