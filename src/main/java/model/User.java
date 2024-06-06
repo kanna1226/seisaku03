@@ -6,16 +6,16 @@ import java.time.LocalDate;
 public class User implements Serializable {
 	private String userId;
 	private String pass;
-	private String userName;
 	private String mail;
+	private String userName;
 	private LocalDate dateOfBirth;
 	
 	public User() {}
-	public User(String userId, String pass, String userName, String mail, LocalDate dateOfBirth) {
+	public User(String userId, String pass,String mail, String userName, LocalDate dateOfBirth) {
 		this.userId = userId;
 		this.pass = pass;
-		this.userName = userName;
 		this.mail = mail;
+		this.userName = userName;
 		this.dateOfBirth = dateOfBirth;
 	}
 	

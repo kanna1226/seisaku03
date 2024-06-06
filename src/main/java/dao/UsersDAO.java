@@ -17,7 +17,8 @@ public class UsersDAO {
 	private final String DB_PASS = "";
 	
 	public User findByLogin(Login login) {
-		User loginUser = null;
+		User user = null;
+		
 		try {
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {
@@ -25,7 +26,8 @@ public class UsersDAO {
 		}
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT USER_ID, PASS, USER_NAME, MAIL, DATEOFBIRTH FROM USERS WHERE USER_ID = ? AND PASS = ?";
+			
+			String sql = "SELECT USER_ID, PASS, MAIL, USER_NAME, DATEOFBIRTH FROM USERS WHERE USER_ID = ? AND PASS = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, login.getUserId());
 			pStmt.setString(2, login.getPass());
@@ -35,41 +37,40 @@ public class UsersDAO {
 			if (rs.next()) {
 				String userId = rs.getString("USER_ID");
 				String pass = rs.getString("PASS");
-				String userName = rs.getString("USER_NAME");
 				String mail = rs.getString("MAIL");
-				Date dateOfBirth_date = rs.getDate("DATEOFBIRTH");
-				LocalDate dateOfBirth = dateOfBirth_date.toLocalDate();
-				loginUser = new User(userId, pass, userName, mail, dateOfBirth);
+				String userName = rs.getString("USER_NAME");
+				Date dateOfBirth_sql = rs.getDate("DATEOFBIRTH");
+				LocalDate dateOfBirth = dateOfBirth_sql.toLocalDate();
+				user = new User(userId, pass, mail, userName, dateOfBirth);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		return loginUser;
+		return user;
 	}
 	
 	public boolean registerUser(User user) {
+		
 		try {
-			Class.forName("org.h2.Drier");
+			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {
 			throw new IllegalStateException("JDBCドライバを読み込めませんでした");
 		}
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "INSERT INTO USERS (USER_ID, PASS, USER_NAME, MAIL, DATEOFBIRTH) VALUES (?, ?, ?, ?, ?)";
+			
+			String sql = "INSERT INTO USERS(USER_ID, PASS, MAIL, USER_NAME, DATEOFBIRTH) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			
-			
-			
 			pStmt.setString(1, user.getUserId());
 			pStmt.setString(2, user.getPass());
-			pStmt.setString(3, user.getUserName());
-			pStmt.setString(4, user.getMail());
-			Date dateOfBirth_date = java.sql.Date.valueOf(user.getDateOfBirth());
-			pStmt.setDate(5, dateOfBirth_date);
+			pStmt.setString(3, user.getMail());
+			pStmt.setString(4, user.getUserName());
+			Date dateOfBirth_sql = java.sql.Date.valueOf(user.getDateOfBirth());
+			pStmt.setDate(5, dateOfBirth_sql);
 			
 			int result = pStmt.executeUpdate();
-			if(result != 1) {
+			if (result != 1) {
 				return false;
 			}
 		} catch (SQLException e) {
@@ -78,5 +79,5 @@ public class UsersDAO {
 		}
 		return true;
 	}
-	
-	}
+
+}

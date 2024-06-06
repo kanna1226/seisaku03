@@ -43,7 +43,7 @@ public class RegisterUserServlet extends HttpServlet {
 			forwardPath = "WEB-INF/jsp/registerUserForm.jsp";
 		} else if(action.equals("done")) {
 			HttpSession session = request.getSession();
-			User registerUser = (User)session.getAttribute("registerAccount");
+			User registerUser = (User)session.getAttribute("registerUser");
 			
 			UsersDAO dao = new UsersDAO();
 			boolean result = dao.registerUser(registerUser);
@@ -82,7 +82,7 @@ public class RegisterUserServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("registerUser", registerUser);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerConfirm.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserConfirm.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -10,6 +10,6 @@
 	<h1>WorKOptimizer ユーザー登録</h1>
 	<h2>登録完了</h2>
 	<p>登録完了しました</p>
-	<a href="RegisterUserServlet">戻る</a>
+	<a href="index.jsp">戻る</a>
 </body>
 </html>

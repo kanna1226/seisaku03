@@ -16,9 +16,7 @@ public class Tasks implements Serializable {
 	private LocalDateTime endDateTime;
 	
 	public Tasks() {}
-	public Tasks(int taskId, String userId, int taskGroup, String taskContent
-			,LocalDateTime tentativeStartDateTime, LocalDateTime tentativeEndDateTime) {
-		this.taskId = taskId;
+	public Tasks(String userId, int taskGroup, String taskContent, LocalDateTime tentativeStartDateTime, LocalDateTime tentativeEndDateTime) {
 		this.userId = userId;
 		this.taskGroupId = taskGroup;
 		this.taskContent = taskContent;

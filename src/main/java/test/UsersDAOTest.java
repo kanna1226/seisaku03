@@ -18,16 +18,19 @@ public class UsersDAOTest {
 		Login login = new Login("minato", "1234");
 		UsersDAO dao = new UsersDAO();
 		User result = dao.findByLogin(login);
-		LocalDate dateOfBirth = LocalDate.of(2001, 5, 01);
+		LocalDate dateOfBirth = LocalDate.of(2001, 05, 01);
+		System.out.println(dateOfBirth);
 		if (result != null &&
 				result.getUserId().equals("minato") &&
 				result.getPass().equals("1234") &&
-				result.getMail().equals("yusuke.minato@miyabilink.jp") &&
+				result.getMail().equals("yusuke.minato@miyabilonk.jp") &&
 				result.getUserName().equals("湊　雄輔") &&
 				result.getDateOfBirth().equals(dateOfBirth)) {
 			System.out.println("testFindByLoginOK:成功しました");
 		} else {
 			System.out.println("testFindByLoginOK:失敗しました");
+			System.out.println(result.getUserId() + ":" + result.getPass() + ":" 
+			+ result.getMail() + ":" + result.getUserName() + ":" + result.getDateOfBirth());
 		}
 	}
 
@@ -43,7 +46,7 @@ public class UsersDAOTest {
 	}
 
 	public static void testRegisterUserOK() {
-		LocalDate dateOfBirth = LocalDate.of(2003, 9, 11);
+		LocalDate dateOfBirth = LocalDate.of(2002, 9, 11);
 		User user = new User("megumi", "5678", "megumi.ayabe@miyabilink.jp", "綾部　めぐみ", dateOfBirth);
 		UsersDAO dao = new UsersDAO();
 		boolean result = dao.registerUser(user);

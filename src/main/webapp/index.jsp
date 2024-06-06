@@ -13,6 +13,6 @@
 	<p>パスワード:<input type="password" name="pass"></p>
 	<p><input type="submit" value="ログイン"></p>
 	</form>
-	<a href="#">ユーザー登録はこちら</a>
+	<a href="RegisterUserServlet">ユーザー登録はこちら</a>
 </body>
 </html>
