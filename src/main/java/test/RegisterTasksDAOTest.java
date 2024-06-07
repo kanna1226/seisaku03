@@ -18,7 +18,7 @@ public class RegisterTasksDAOTest {
 	public static void testRegisterTasksOK() {
 		LocalDateTime tentativeStartDateTime = LocalDateTime.now();
 		LocalDateTime tentativeEndDateTime = LocalDateTime.now().plusHours(1);
-		Tasks task = new Tasks("megumi", 1, "午後メール対応", tentativeStartDateTime, tentativeEndDateTime);
+		Tasks task = new Tasks("minato", 1, "午後メール対応", tentativeStartDateTime, tentativeEndDateTime);
 		RegisterTasksDAO dao = new RegisterTasksDAO();
 		boolean result = dao.registerTasks(task);
 		if (result) {

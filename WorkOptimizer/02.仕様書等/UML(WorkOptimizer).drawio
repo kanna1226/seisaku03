@@ -1195,8 +1195,8 @@
                 <mxCell id="O3NqFF4w2-Joww7FY3OH-5" style="edgeStyle=none;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.997;entryY=0.874;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=classic;endFill=1;" parent="1" source="O3NqFF4w2-Joww7FY3OH-6" target="O3NqFF4w2-Joww7FY3OH-2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="O3NqFF4w2-Joww7FY3OH-6" value="GetRegisterLogic&lt;br&gt;execute()" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="456" y="1320.5" width="120" height="45" as="geometry"/>
+                <mxCell id="O3NqFF4w2-Joww7FY3OH-6" value="GetTaskListLogic&lt;br&gt;execute()" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="449" y="1323.25" width="144" height="39.5" as="geometry"/>
                 </mxCell>
                 <mxCell id="O3NqFF4w2-Joww7FY3OH-7" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=classic;endFill=1;" parent="1" source="O3NqFF4w2-Joww7FY3OH-9" target="O3NqFF4w2-Joww7FY3OH-10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>

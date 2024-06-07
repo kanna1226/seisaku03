@@ -9,7 +9,9 @@
 </head>
 <body>
 	<h1>WorKOptimizer ログイン</h1>
-	<p>ようこそ<c:out value="${userId}" />さん</p>
+	<p>ようこそ<c:out value="${loginUser.userId}" />さん</p>
+	<a href="RegisterTasksServlet">タスク入力へ</a>
+	<a href="#">業務開始</a>
 	<a href="index.jsp">トップへ</a>
 </body>
 </html>

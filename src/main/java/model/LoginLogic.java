@@ -9,3 +9,5 @@ public class LoginLogic {
 		return user != null;
 	}
 }
+
+//現状使ってない

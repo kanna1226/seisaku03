@@ -1,14 +1,17 @@
 package model;
 
-public class TaskGroup {
+import java.io.Serializable;
+
+public class TaskGroup implements Serializable {
 	private int taskGroupId;
 	private String taskGroupName;
 	
+	public TaskGroup() {}
 	public TaskGroup(int taskGroupId, String taskGroupName) { 
 		this.taskGroupId = taskGroupId;
 		this.taskGroupName = taskGroupName;
 	}
 	
-	public int taskGroupId() { return taskGroupId; }
-	public String taskGropuName() { return taskGroupName; }
+	public int getTaskGroupId() { return taskGroupId; }
+	public String getTaskGroupName() { return taskGroupName; }
 }

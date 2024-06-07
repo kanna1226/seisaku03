@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.UsersDAO;
 import model.Login;
-import model.LoginLogic;
+import model.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -48,12 +49,13 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("pass");
 		
 		Login login = new Login(userId, pass);
-		LoginLogic bo = new LoginLogic();
-		boolean result = bo.execute(login);
+		UsersDAO dao = new UsersDAO();
+		User loginUser = dao.findByLogin(login);
 		
-		if(result) {
+		if(loginUser != null) {
+			
 			HttpSession session = request.getSession();
-			session.setAttribute("useId", userId);
+			session.setAttribute("loginUser", loginUser);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/loginResult.jsp");
 			dispatcher.forward(request, response);
