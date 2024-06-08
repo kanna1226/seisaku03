@@ -23,7 +23,7 @@ public class RegisterTasksDAO {
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			
-			String sql = "INSERT INTO TASKS(USER_ID, TASKGROUP_ID, TASK_CONTENT, REGISTER_DATE, TANTATIVE_START_DATETIME,TANTATIVE_END_DATETIME) VALUES(?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO TASKS(USER_ID, TASKGROUP_ID, TASK_CONTENT, REGISTER_DATE, TENTATIVE_START_DATETIME,TENTATIVE_END_DATETIME) VALUES(?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, task.getUserId());

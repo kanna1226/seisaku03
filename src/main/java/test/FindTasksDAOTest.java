@@ -1,6 +1,9 @@
 package test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import dao.FindTasksDAO;
@@ -14,6 +17,9 @@ public class FindTasksDAOTest {
 		testFindTodayRegisterTasksOK(loginUser);
 		//testFindTodayRegisterTasksNG();
 		
+		LocalDateTime now = LocalDateTime.now();
+		Date d = Date.from(now.atZone(ZoneId.systemDefault()).toInstant());
+		System.out.println(d);
 	}
 	
 	public static void testFindTodayRegisterTasksOK(User loginUser) {

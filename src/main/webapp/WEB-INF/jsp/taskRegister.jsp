@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<%@ page import="java.time.LocalDateTime,java.time.format.DateTimeFormatter,model.Tasks" %>
-<%
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,11 +41,7 @@
 			</c:if>
 		</c:forEach>
 		詳細:<c:out value="${task.taskContent}"/>/
-		期限:
-		<%
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd");
-			
-		%>
+		期限:<fmt:formatDate value="${task.tentativeEndDate}" pattern="yyyy-MM-dd" />
 		</p>
 	</c:forEach>
 	<p><a href="#">業務開始</a></p>

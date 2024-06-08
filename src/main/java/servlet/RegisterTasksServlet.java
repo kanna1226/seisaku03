@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -53,11 +54,11 @@ public class RegisterTasksServlet extends HttpServlet {
     	} else {
     		GetTaskListLogic getTaskListLogic = new GetTaskListLogic();
     		List<Tasks> todayRegisterTaskList = getTaskListLogic.execute(loginUser);
-    		request.setAttribute("todayRegisterTaskList", todayRegisterTaskList);
+    		session.setAttribute("todayRegisterTaskList", todayRegisterTaskList);
     		
     		TaskGroupDAO dao = new TaskGroupDAO();
     		List<TaskGroup> taskGroupList = dao.findTaskGroup();
-    		request.setAttribute("taskGroupList", taskGroupList);
+    		session.setAttribute("taskGroupList", taskGroupList);
 
     		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/taskRegister.jsp");
     		dispatcher.forward(request, response);
@@ -94,19 +95,20 @@ public class RegisterTasksServlet extends HttpServlet {
 	        int tentativeEndMinutes = Integer.parseInt(tentativeEndTimeString);
 	        LocalTime tentativeEndTime = tentativeStartTime.plusMinutes(tentativeEndMinutes);
 	        LocalDateTime tentativeEndDateTime = LocalDateTime.of(tentativeStartDate, tentativeEndTime);
+	        Date tentativeEndDate = Date.from(tentativeEndDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
-	        Tasks task = new Tasks(loginUser.getUserId(), taskGroupId, taskContent, tentativeStartDateTime, tentativeEndDateTime);
+	        Tasks task = new Tasks(loginUser.getUserId(), taskGroupId, taskContent, tentativeStartDateTime, tentativeEndDateTime, tentativeEndDate);
 	        PostTaskLogic postTaskLogic = new PostTaskLogic();
 	        postTaskLogic.execute(task);
 	        
 	        // タスクリストを更新して再取得
 	        GetTaskListLogic getTaskListLogic = new GetTaskListLogic();
 	        List<Tasks> todayRegisterTaskList = getTaskListLogic.execute(loginUser);
-	        request.setAttribute("todayRegisterTaskList", todayRegisterTaskList);
+	        session.setAttribute("todayRegisterTaskList", todayRegisterTaskList);
 	        
 	        TaskGroupDAO dao = new TaskGroupDAO();
     		List<TaskGroup> taskGroupList = dao.findTaskGroup();
-    		request.setAttribute("taskGroupList", taskGroupList);
+    		session.setAttribute("taskGroupList", taskGroupList);
 
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/taskRegister.jsp");
 	        dispatcher.forward(request, response);
@@ -116,11 +118,11 @@ public class RegisterTasksServlet extends HttpServlet {
 	        // タスクリストを更新して再取得
 	        GetTaskListLogic getTaskListLogic = new GetTaskListLogic();
 	        List<Tasks> todayRegisterTaskList = getTaskListLogic.execute(loginUser);
-	        request.setAttribute("todayRegisterTaskList", todayRegisterTaskList);
+	        session.setAttribute("todayRegisterTaskList", todayRegisterTaskList);
 	        
 	        TaskGroupDAO dao = new TaskGroupDAO();
     		List<TaskGroup> taskGroupList = dao.findTaskGroup();
-    		request.setAttribute("taskGroupList", taskGroupList);
+    		session.setAttribute("taskGroupList", taskGroupList);
 
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/taskRegister.jsp");
 	        dispatcher.forward(request, response);

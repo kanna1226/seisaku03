@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Tasks implements Serializable {
 	private int taskId;
@@ -12,21 +13,23 @@ public class Tasks implements Serializable {
 	private LocalDate registerDate;
 	private LocalDateTime tentativeStartDateTime;
 	private LocalDateTime tentativeEndDateTime;
+	private Date tentativeEndDate;
 	private LocalDateTime startDateTime;
 	private LocalDateTime endDateTime;
 	
 	public Tasks() {}
-	public Tasks(String userId, int taskGroup, String taskContent, LocalDateTime tentativeStartDateTime, LocalDateTime tentativeEndDateTime) {
+	public Tasks(String userId, int taskGroup, String taskContent, LocalDateTime tentativeStartDateTime, LocalDateTime tentativeEndDateTime, Date tentativeEndDate) {
 		this.userId = userId;
 		this.taskGroupId = taskGroup;
 		this.taskContent = taskContent;
 		this.registerDate = LocalDate.now();
-		this.tentativeStartDateTime = tentativeStartDateTime; //変更いるかも
-		this.tentativeEndDateTime = tentativeEndDateTime; //変更いるかも
+		this.tentativeStartDateTime = tentativeStartDateTime;
+		this.tentativeEndDateTime = tentativeEndDateTime;
+		this.tentativeEndDate = tentativeEndDate;
 		
 	}
 	public Tasks(int taskId, String userId, int taskGroup, String taskContent, LocalDate registerDate,
-			LocalDateTime tentativeStartDateTime, LocalDateTime tentativeEndDateTime,
+			LocalDateTime tentativeStartDateTime, LocalDateTime tentativeEndDateTime, Date tentativeEndDate,
 			LocalDateTime startDateTime, LocalDateTime endDateTime) {
 		this.taskId = taskId;
 		this.userId = userId;
@@ -35,6 +38,7 @@ public class Tasks implements Serializable {
 		this.registerDate = registerDate;
 		this.tentativeStartDateTime = tentativeStartDateTime;
 		this.tentativeEndDateTime = tentativeEndDateTime;
+		this.tentativeEndDate = tentativeEndDate;
 		this.startDateTime = startDateTime;
 		this.endDateTime = endDateTime;
 	}
@@ -46,6 +50,7 @@ public class Tasks implements Serializable {
 	public LocalDate getRegisterDate() { return registerDate; }
 	public LocalDateTime getTentativeStartDateTime() { return tentativeStartDateTime; }
 	public LocalDateTime getTentativeEndDateTime() { return tentativeEndDateTime; }
+	public Date getTentativeEndDate() { return tentativeEndDate; }
 	public LocalDateTime getStartDateTime() { return startDateTime; }
 	public LocalDateTime getEndDateTime() { return endDateTime; }
  
