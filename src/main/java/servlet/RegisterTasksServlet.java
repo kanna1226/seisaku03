@@ -53,7 +53,7 @@ public class RegisterTasksServlet extends HttpServlet {
     		response.sendRedirect("index.jsp");
     	} else {
     		GetTaskListLogic getTaskListLogic = new GetTaskListLogic();
-    		List<Tasks> todayRegisterTaskList = getTaskListLogic.execute(loginUser);
+    		List<Tasks> todayRegisterTaskList = getTaskListLogic.getTodayRegisterTasksExecute(loginUser);
     		session.setAttribute("todayRegisterTaskList", todayRegisterTaskList);
     		
     		TaskGroupDAO dao = new TaskGroupDAO();
@@ -103,7 +103,7 @@ public class RegisterTasksServlet extends HttpServlet {
 	        
 	        // タスクリストを更新して再取得
 	        GetTaskListLogic getTaskListLogic = new GetTaskListLogic();
-	        List<Tasks> todayRegisterTaskList = getTaskListLogic.execute(loginUser);
+	        List<Tasks> todayRegisterTaskList = getTaskListLogic.getTodayRegisterTasksExecute(loginUser);
 	        session.setAttribute("todayRegisterTaskList", todayRegisterTaskList);
 	        
 	        TaskGroupDAO dao = new TaskGroupDAO();
@@ -117,7 +117,7 @@ public class RegisterTasksServlet extends HttpServlet {
 
 	        // タスクリストを更新して再取得
 	        GetTaskListLogic getTaskListLogic = new GetTaskListLogic();
-	        List<Tasks> todayRegisterTaskList = getTaskListLogic.execute(loginUser);
+	        List<Tasks> todayRegisterTaskList = getTaskListLogic.getTodayRegisterTasksExecute(loginUser);
 	        session.setAttribute("todayRegisterTaskList", todayRegisterTaskList);
 	        
 	        TaskGroupDAO dao = new TaskGroupDAO();

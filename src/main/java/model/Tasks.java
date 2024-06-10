@@ -53,6 +53,13 @@ public class Tasks implements Serializable {
 	public Date getTentativeEndDate() { return tentativeEndDate; }
 	public LocalDateTime getStartDateTime() { return startDateTime; }
 	public LocalDateTime getEndDateTime() { return endDateTime; }
+	
+	public void setStartDateTime(LocalDateTime startDateTime) {
+		this.startDateTime = startDateTime;
+	}
+	public void setEndDateTime(LocalDateTime endDateTime) {
+		this.endDateTime = endDateTime;
+	}
  
 
 }

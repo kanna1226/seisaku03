@@ -12,7 +12,7 @@
 	<h1>WorkOptimizer</h1>
 	<h2>タスク登録</h2>
 	<p><c:out value="${loginUser.userName}"/>さんログイン中</p>
-	<a href="#">ログアウト</a>
+	<a href="Logout">ログアウト</a>
 	<form action="RegisterTasksServlet" method="post">
 	<p>業務内容:
 	<select name="taskGroupId">
@@ -44,6 +44,6 @@
 		期限:<fmt:formatDate value="${task.tentativeEndDate}" pattern="yyyy-MM-dd" />
 		</p>
 	</c:forEach>
-	<p><a href="#">業務開始</a></p>
+	<p><a href="HandleTasksServlet">業務開始</a></p>
 </body>
 </html>

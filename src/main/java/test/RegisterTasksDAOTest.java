@@ -10,7 +10,7 @@ import model.Tasks;
 
 public class RegisterTasksDAOTest {
 	public static void main(String[] args) {
-		testRegisterTasksOK();
+		//testRegisterTasksOK();
 		testUpdateTasksOK();
 	}
 	
@@ -36,8 +36,8 @@ public class RegisterTasksDAOTest {
 		LocalDateTime tentativeStartDateTime = LocalDateTime.of(2024,6,2,9,0,0);
 		LocalDateTime tentativeEndDateTime = LocalDateTime.of(2024,6,2,9,15,0);
 		Date tentativeEndDate = Date.from(tentativeEndDateTime.atZone(ZoneId.systemDefault()).toInstant());
-		LocalDateTime startDateTime = LocalDateTime.of(2024,6,2,9,0,0);
-		LocalDateTime endDateTime = LocalDateTime.of(2024,6,2,9,20,0);
+		LocalDateTime startDateTime = LocalDateTime.of(2024,6,10,9,0,0);
+		LocalDateTime endDateTime = LocalDateTime.of(2024,6,10,9,20,0);
 		
 		Tasks task = new Tasks(1, "minato", 1, "午前中メール対応", registerDate, tentativeStartDateTime, tentativeEndDateTime, tentativeEndDate, startDateTime, endDateTime);
 		RegisterTasksDAO dao = new RegisterTasksDAO();

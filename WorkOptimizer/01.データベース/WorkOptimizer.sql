@@ -14,6 +14,16 @@ create table TASKGROUP (
 );
 insert into TASKGROUP (TASKGROUP_NAME)
 values ('メール');
+insert into TASKGROUP(TAKGROUP_NAME)
+values('パソコンスキル');
+insert into TASKGROUP(TASKGROUP_NAME)
+values('タイピング');
+insert into TASKGROUP(TASKGROUP_NAME)
+values('軽作業');
+insert into TASKGROUP(TASKGROUP_NAME)
+values('面接対策');
+insert into TASKGROUP(TASKGROUP_NAME)
+values('応募書類作成');
 
 CREATE TABLE TASKS (
     TASK_ID INTEGER PRIMARY KEY AUTO_INCREMENT,
