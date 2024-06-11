@@ -7,6 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>WorkOptimizer -handle tasks-</title>
+<script>
+function disableButton(button) {
+    button.disabled = true;
+}
+
+function handleStartClick(taskId) {
+    document.getElementById('start_' + taskId).disabled = true;
+    document.getElementById('end_' + taskId).disabled = false;
+}
+
+function handleEndClick(taskId) {
+    document.getElementById('end_' + taskId).disabled = true;
+}
+
+window.onload = function() {
+    // ページロード時にエンドボタンを無効にする
+    var tasks = document.querySelectorAll('[data-task-id]');
+    tasks.forEach(function(task) {
+        var taskId = task.getAttribute('data-task-id');
+        document.getElementById('end_' + taskId).disabled = true;
+    });
+};
+</script>
 </head>
 <body>
     <h1>WorkOptimizer</h1>
@@ -26,8 +49,10 @@
         期限:<fmt:formatDate value="${task.tentativeEndDate}" pattern="yyyy-MM-dd" />
         </p>
         <p>
-        <input type="submit" name="${'action' += task.taskId}" value="start">
-        <input type="submit" name="${'action' += task.taskId}" value="end">
+        <%-- input type="submit" name="${'action' += task.taskId}" value="start" --%>
+        <%-- input type="submit" name="${'action' += task.taskId}" value="end" --%>
+        <input type="submit" id="start_${task.taskId}" name="${'action' += task.taskId}" value="start" onclick="handleStartClick('${task.taskId}');">
+        <input type="submit" id="end_${task.taskId}" name="${'action' += task.taskId}" value="end" onclick="handleEndClick('${task.taskId}');">
         </p>
         <p>
         開始時間:<c:out value="${requestScope['startDateTime' += task.taskId]}" />

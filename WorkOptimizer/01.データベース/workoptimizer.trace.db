@@ -335,3 +335,33 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: テーブル "TASKS" が見つかりま
 Table "TASKS" not found; SQL statement:
 insert into TASKS (USER_ID, TASKGROUP_ID, TASK_CONTENT, TANTATIVE_START_DATETIME, TANTATIVE_END_DATETIME)
 values ('minato', '1', '午前中分メール対応', '2024-6-2 09:00:00','2024-6-2 09:15:00') [42102-224]
+2024-06-08 22:26:49.588259+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: SQLステートメントに文法エラーがあります "[*]TASKGROUP"; 期待されるステートメント "TRUNCATE"
+Syntax error in SQL statement "[*]TASKGROUP"; expected "TRUNCATE"; SQL statement:
+TASKGROUP [42001-224]
+2024-06-08 22:31:42.409202+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: 列 "TENTATIVE_END_DATETIME" が見つかりません
+Column "TENTATIVE_END_DATETIME" not found; SQL statement:
+SELECT * FROM TASKS WHERE USER_ID = 'minato' AND REGISTER_DATE = '2024-06-08' ORDER BY TENTATIVE_END_DATETIME [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:559)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1166)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1109)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1096)
+	at org.h2.server.web.WebThread.process(WebThread.java:190)
+	at org.h2.server.web.WebThread.run(WebThread.java:103)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
