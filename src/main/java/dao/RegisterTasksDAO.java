@@ -48,7 +48,7 @@ public class RegisterTasksDAO {
 		return true;
 	}
 	
-	public boolean updateTasks(Tasks task) {
+	public boolean updateStartDateTimeTasks(Tasks task) {
 		try {
 			Class.forName("org.h2.Driver");
 		} catch (ClassNotFoundException e) {
@@ -56,14 +56,40 @@ public class RegisterTasksDAO {
 		}
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "UPDATE TASKS SET(START_DATETIME, END_DATETIME) = (?, ?) WHERE TASK_ID = ?";
+			String sql = "UPDATE TASKS SET(START_DATETIME) = (?) WHERE TASK_ID = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			Timestamp startDateTime = Timestamp.valueOf(task.getStartDateTime());
 			pStmt.setTimestamp(1, startDateTime);
+			pStmt.setInt(2, task.getTaskId());
+			
+			int result = pStmt.executeUpdate();
+			
+			if (result != 1) {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean updateEndDateTimeTasks(Tasks task) {
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException("JDBCドライバを読み込めませんでした");
+		}
+		
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "UPDATE TASKS SET(END_DATETIME) = (?) WHERE TASK_ID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			
 			Timestamp endDateTime = Timestamp.valueOf(task.getEndDateTime());
-			pStmt.setTimestamp(2, endDateTime);
-			pStmt.setInt(3, task.getTaskId());
+			pStmt.setTimestamp(1, endDateTime);
+			pStmt.setInt(2, task.getTaskId());
 			
 			int result = pStmt.executeUpdate();
 			

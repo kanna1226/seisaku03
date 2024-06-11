@@ -82,18 +82,22 @@ public class HandleTasksServlet extends HttpServlet {
 	            Instant instant = Instant.ofEpochMilli(currentTimeMillis);
 	            LocalDateTime startDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 	            task.setStartDateTime(startDateTime);
-	            request.setAttribute("startDateTime" + task.getTaskId(), startDateTime);
+	            UpdateTaskLogic updateTaskLogic = new UpdateTaskLogic();
+	            updateTaskLogic.updateStartDateTimeExecute(task);
+	            request.setAttribute("startDateTime" + task.getTaskId(), task.getStartDateTime());
 	        }
 	        if("end".equals(actionResult)) {
 	            long currentTimeMillis = System.currentTimeMillis();
 	            Instant instant = Instant.ofEpochMilli(currentTimeMillis);
 	            LocalDateTime endDateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 	            task.setEndDateTime(endDateTime);
-	            request.setAttribute("endDateTime" + task.getTaskId(), endDateTime);
+	            UpdateTaskLogic updateTaskLogic = new UpdateTaskLogic();
+	            updateTaskLogic.updateEndDateTimeExecute(task);
+	            request.setAttribute("endDateTime" + task.getTaskId(), task.getEndDateTime());
 	        }
-	        UpdateTaskLogic updateTaskLogic = new UpdateTaskLogic();
-	        updateTaskLogic.execute(task);
 	    }
+	    
+	    
 
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/handleTasks.jsp");
 	    dispatcher.forward(request, response);

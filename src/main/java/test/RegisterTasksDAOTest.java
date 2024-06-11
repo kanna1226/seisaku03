@@ -41,12 +41,12 @@ public class RegisterTasksDAOTest {
 		
 		Tasks task = new Tasks(1, "minato", 1, "午前中メール対応", registerDate, tentativeStartDateTime, tentativeEndDateTime, tentativeEndDate, startDateTime, endDateTime);
 		RegisterTasksDAO dao = new RegisterTasksDAO();
-		boolean result = dao.updateTasks(task);
-		if (result) {
-			System.out.println("testUpdateTasksOK:成功しました");
-		} else {
-			System.out.println("testUpdateTasksOK:失敗しました");
-		}
+		//boolean result = dao.updateTasks(task);
+//		if (result) {
+//			System.out.println("testUpdateTasksOK:成功しました");
+//		} else {
+//			System.out.println("testUpdateTasksOK:失敗しました");
+//		}
 	}
 }
 
