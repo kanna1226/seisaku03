@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+body {
+	background-image: url("${pageContext.request.contextPath}/images/haikei.jpg");
+	font-family: 'Sawarabi Mincho', sans-serif;
+}
+
+.wrapper {
+	width: 80%;
+	margin: 4rem auto;
+	text-align: center;
+	background-color: #FFFFFF;
+	border-radius: 20px;
+}
+
+
+

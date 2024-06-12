@@ -2,12 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>WorkOptimizer -handle tasks-</title>
-<script>
+<%-- <script>
 function disableButton(button) {
     button.disabled = true;
 }
@@ -29,13 +30,15 @@ window.onload = function() {
         document.getElementById('end_' + taskId).disabled = true;
     });
 };
-</script>
+</script>--%>
 </head>
 <body>
+	<div class="wrapper">
     <h1>WorkOptimizer</h1>
     <h2>タスク一覧</h2>
     <p><c:out value="${loginUser.userName}"/>さんログイン中</p>
-    <a href="Logout">ログアウト</a>
+    <a href="RegisterTasksServlet">タスク入力へ</a>
+    
     <form action="HandleTasksServlet" method="post">
     <c:forEach var="task" items="${todayHandleTaskList}">
         <p>
@@ -49,17 +52,21 @@ window.onload = function() {
         期限:<fmt:formatDate value="${task.tentativeEndDate}" pattern="yyyy-MM-dd" />
         </p>
         <p>
-        <%-- input type="submit" name="${'action' += task.taskId}" value="start" --%>
-        <%-- input type="submit" name="${'action' += task.taskId}" value="end" --%>
-        <input type="submit" id="start_${task.taskId}" name="${'action' += task.taskId}" value="start" onclick="handleStartClick('${task.taskId}');">
-        <input type="submit" id="end_${task.taskId}" name="${'action' += task.taskId}" value="end" onclick="handleEndClick('${task.taskId}');">
+        <input type="submit" name="${'action' += task.taskId}" value="start">
+        <input type="submit" name="${'action' += task.taskId}" value="end">
+        <%--input type="submit" id="start_${task.taskId}" name="${'action' += task.taskId}" value="start" onclick="handleStartClick('${task.taskId}');"--%>
+        <%--input type="submit" id="end_${task.taskId}" name="${'action' += task.taskId}" value="end" onclick="handleEndClick('${task.taskId}');"--%>
         </p>
         <p>
-        開始時間:<c:out value="${requestScope['startDateTime' += task.taskId]}" />
-        終了時間:<c:out value="${requestScope['endDateTime' += task.taskId]}" />
+        開始時間:<c:out value="${sessionScope['startDateTime' += task.taskId]}" />
+        終了時間:<c:out value="${sessionScope['endDateTime' += task.taskId]}" />
+        かかった時間:<c:out value="${sessionScope['taskHandleDuration' += task.taskId]}" />分
+        予定時間との差:<c:out value="${sessionScope.difference}" />分
         </p>    
     </c:forEach>
     </form>
     <a href="CompleteTasksServlet">業務終了</a>
+    <a href="Logout">ログアウト</a>
+    </div>
 </body>
 </html>

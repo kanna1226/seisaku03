@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -32,7 +33,7 @@ public class FindTasksDAO {
 		}
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND REGISTER_DATE = ? ORDER BY TENTATIVE_END_DATETIME";
+			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND REGISTER_DATE = ?　AND END_DATETIME IS NULL ORDER BY TENTATIVE_END_DATETIME";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, loginUser.getUserId());
 			LocalDate today_LocalDate = LocalDate.now();
@@ -165,6 +166,10 @@ public class FindTasksDAO {
 				Timestamp endDateTime_sql = rs.getTimestamp("END_DATETIME");
 				LocalDateTime endDateTime = endDateTime_sql.toLocalDateTime();
 				Tasks task = new Tasks(taskId, userId, taskGroupId, taskContent, registerDate, tentativeStartDateTime, tentativeEndDateTime,tentativeEndDate, startDateTime, endDateTime);
+				if(task.getStartDateTime() != null && task.getEndDateTime() != null) {
+		        	Duration taskHandleDuration = Duration.between(task.getStartDateTime(), task.getEndDateTime());
+			        task.setTaskHandleDuration(taskHandleDuration);
+		        }
 				todayEndTasks.add(task);
 				}
 			}catch (SQLException e) {

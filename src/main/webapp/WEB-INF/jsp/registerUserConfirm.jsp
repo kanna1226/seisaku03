@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 <title>WorkOptimizer - Register</title>
 </head>
 <body>
+	<div class="wrapper">
 	<h1>WorKOptimizer ユーザー登録</h1>
 	<h2>確認</h2>
 	<p>下記ユーザーを登録します</p>
@@ -19,5 +21,6 @@
 	</p>
 	<a href="RegisterUserServlet">戻る</a>
 	<a href="RegisterUserServlet?action=done">登録</a>
+	</div>
 </body>
 </html>

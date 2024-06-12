@@ -1,9 +1,11 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -84,7 +86,6 @@ public class HandleTasksServlet extends HttpServlet {
 	            task.setStartDateTime(startDateTime);
 	            UpdateTaskLogic updateTaskLogic = new UpdateTaskLogic();
 	            updateTaskLogic.updateStartDateTimeExecute(task);
-	            request.setAttribute("startDateTime" + task.getTaskId(), task.getStartDateTime());
 	        }
 	        if("end".equals(actionResult)) {
 	            long currentTimeMillis = System.currentTimeMillis();
@@ -93,8 +94,27 @@ public class HandleTasksServlet extends HttpServlet {
 	            task.setEndDateTime(endDateTime);
 	            UpdateTaskLogic updateTaskLogic = new UpdateTaskLogic();
 	            updateTaskLogic.updateEndDateTimeExecute(task);
-	            request.setAttribute("endDateTime" + task.getTaskId(), task.getEndDateTime());
 	        }
+	        
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	        if(task.getStartDateTime() != null) {
+	        	String formattedStartDateTime = task.getStartDateTime().format(formatter);
+	        	session.setAttribute("startDateTime" + task.getTaskId(), formattedStartDateTime);
+	        }
+	        if(task.getEndDateTime() != null) {
+	        	String formattedEndDateTime = task.getEndDateTime().format(formatter);
+		        session.setAttribute("endDateTime" + task.getTaskId(), formattedEndDateTime);
+	        }
+	        
+	        if(task.getStartDateTime() != null && task.getEndDateTime() != null) {
+	        	Duration taskHandleDuration = Duration.between(task.getStartDateTime(), task.getEndDateTime());
+		        task.setTaskHandleDuration(taskHandleDuration);
+		        session.setAttribute("taskHandleDuration" + task.getTaskId(), task.getTaskhandleDuration().toMinutes());
+		        Duration scheduledTime = Duration.between(task.getTentativeStartDateTime(), task.getTentativeEndDateTime());
+		        long difference = taskHandleDuration.toMinutes() - scheduledTime.toMinutes();
+		        session.setAttribute("difference", difference);
+	        }
+	        
 	    }
 	    
 	    

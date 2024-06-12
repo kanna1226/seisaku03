@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <title>WorkOptimizer - Register</title>
 </head>
 <body>
+	<div class="wrapper">
 	<form action="RegisterUserServlet" method="post">
 	<h1>WorKOptimizer ユーザー登録</h1>
 	<h2>入力</h2>
@@ -17,5 +19,6 @@
 	<p>生年月日:<input type="date" value="2018-02-14" name="dateOfBirth"></p>
 	<p><input type="submit" value="登録確認"></p>
 	</form>
+	</div>
 </body>
 </html>
