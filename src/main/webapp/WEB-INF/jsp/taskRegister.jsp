@@ -14,21 +14,22 @@
 		<h1>WorkOptimizer</h1>
 		<h2>タスク登録</h2>
 		<p><c:out value="${loginUser.userName}"/>さんログイン中</p>
-		<a href="Logout">ログアウト</a>
+		<a href="Logout" class="btn_04">ログアウト</a>
 		<form action="RegisterTasksServlet" method="post">
 		<p>業務内容:
-		<select name="taskGroupId">
+		<select name="taskGroupId"  class="txt">
 			<c:forEach var="taskGroup" items="${taskGroupList}">
 				<option value="${taskGroup.taskGroupId}"><c:out value="${taskGroup.taskGroupName}"/></option>
 			</c:forEach>
-		</select>詳細:<input type="text" name="taskContent"></p>
+		</select>
+		詳細:<input type="text" name="taskContent" class="txt"></p>
 		<p>
 		期限:
 		<fmt:formatDate value="${currentDate}" pattern="yyyy-MM-dd" var="todayDate" />
-		<input type="date" value="${todayDate}" name="tentativeStartDateString">
-		予定時間:<input type="number" name="tentativeEndTimeString">分
+		<input type="date" value="${todayDate}" name="tentativeStartDateString" class="txt">
+		予定時間:<input type="number" name="tentativeEndTimeString" class="txt">分
 		</p>
-		<p><input type="submit" value="登録"></p>
+		<input type="submit" value="登録" class="button">
 		</form>
 		<c:if test="${not empty errorMsg}">
 			<p style="color:red"><c:out value="${errorMsg}"/></p>
@@ -43,10 +44,11 @@
 				</c:if>
 			</c:forEach>
 			詳細:<c:out value="${task.taskContent}"/>/
-			期限:<fmt:formatDate value="${task.tentativeEndDate}" pattern="yyyy-MM-dd" />
+			期限:<c:out value="${task.tentativeStartDate}" />/
+			予定時間:<c:out value="${task.tentativeEndTime}" />分
 			</p>
 		</c:forEach>
-		<p><a href="HandleTasksServlet">業務開始</a></p>
+		<p><a href="HandleTasksServlet" class="btn_04">業務開始</a></p>
 	</div>
 </body>
 </html>

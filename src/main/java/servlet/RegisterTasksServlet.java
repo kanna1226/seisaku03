@@ -2,9 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -90,14 +87,9 @@ public class RegisterTasksServlet extends HttpServlet {
 	        
 	        int taskGroupId = Integer.parseInt(taskGroupIdString);
 	        LocalDate tentativeStartDate = LocalDate.parse(tentativeStartDateString);
-	        LocalTime tentativeStartTime = LocalTime.now();
-	        LocalDateTime tentativeStartDateTime = LocalDateTime.of(tentativeStartDate, tentativeStartTime);
-	        int tentativeEndMinutes = Integer.parseInt(tentativeEndTimeString);
-	        LocalTime tentativeEndTime = tentativeStartTime.plusMinutes(tentativeEndMinutes);
-	        LocalDateTime tentativeEndDateTime = LocalDateTime.of(tentativeStartDate, tentativeEndTime);
-	        Date tentativeEndDate = Date.from(tentativeEndDateTime.atZone(ZoneId.systemDefault()).toInstant());
+	        long tentativeEndTime = Long.parseLong(tentativeEndTimeString);
 
-	        Tasks task = new Tasks(loginUser.getUserId(), taskGroupId, taskContent, tentativeStartDateTime, tentativeEndDateTime, tentativeEndDate);
+	        Tasks task = new Tasks(loginUser.getUserId(), taskGroupId, taskContent, tentativeStartDate, tentativeEndTime);
 	        PostTaskLogic postTaskLogic = new PostTaskLogic();
 	        postTaskLogic.execute(task);
 	        

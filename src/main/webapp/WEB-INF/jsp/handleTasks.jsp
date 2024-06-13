@@ -37,7 +37,7 @@ window.onload = function() {
     <h1>WorkOptimizer</h1>
     <h2>タスク一覧</h2>
     <p><c:out value="${loginUser.userName}"/>さんログイン中</p>
-    <a href="RegisterTasksServlet">タスク入力へ</a>
+    <a href="RegisterTasksServlet" class="btn_04">タスク入力へ</a>
     
     <form action="HandleTasksServlet" method="post">
     <c:forEach var="task" items="${todayHandleTaskList}">
@@ -49,11 +49,12 @@ window.onload = function() {
             </c:if>
         </c:forEach>
         詳細:<c:out value="${task.taskContent}"/>/
-        期限:<fmt:formatDate value="${task.tentativeEndDate}" pattern="yyyy-MM-dd" />
+        期限:<c:out value="${task.tentativeStartDate}" />
+        予定時間:<c:out value="${task.tentativeEndTime}" />分
         </p>
         <p>
-        <input type="submit" name="${'action' += task.taskId}" value="start">
-        <input type="submit" name="${'action' += task.taskId}" value="end">
+        <input type="submit" name="${'action' += task.taskId}" value="start" class="button">
+        <input type="submit" name="${'action' += task.taskId}" value="end" class="button">
         <%--input type="submit" id="start_${task.taskId}" name="${'action' += task.taskId}" value="start" onclick="handleStartClick('${task.taskId}');"--%>
         <%--input type="submit" id="end_${task.taskId}" name="${'action' += task.taskId}" value="end" onclick="handleEndClick('${task.taskId}');"--%>
         </p>
@@ -61,12 +62,12 @@ window.onload = function() {
         開始時間:<c:out value="${sessionScope['startDateTime' += task.taskId]}" />
         終了時間:<c:out value="${sessionScope['endDateTime' += task.taskId]}" />
         かかった時間:<c:out value="${sessionScope['taskHandleDuration' += task.taskId]}" />分
-        予定時間との差:<c:out value="${sessionScope.difference}" />分
+        予定時間との差:<c:out value="${sessionScope['difference' += task.taskId]}" />分
         </p>    
     </c:forEach>
     </form>
-    <a href="CompleteTasksServlet">業務終了</a>
-    <a href="Logout">ログアウト</a>
+    <a href="CompleteTasksServlet" class="btn_04">業務終了</a>
+    <a href="Logout" class="btn_04">ログアウト</a>
     </div>
 </body>
 </html>

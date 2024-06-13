@@ -19,8 +19,8 @@
 	名前:<c:out value="${registerUser.userName}" />
 	生年月日:<c:out value="${registerUser.dateOfBirth}" />
 	</p>
-	<a href="RegisterUserServlet">戻る</a>
-	<a href="RegisterUserServlet?action=done">登録</a>
+	<a href="RegisterUserServlet" class="btn_04">戻る</a>
+	<a href="RegisterUserServlet?action=done" class="btn_04">登録</a>
 	</div>
 </body>
 </html>

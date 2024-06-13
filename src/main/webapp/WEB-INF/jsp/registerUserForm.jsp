@@ -11,14 +11,17 @@
 	<div class="wrapper">
 	<form action="RegisterUserServlet" method="post">
 	<h1>WorKOptimizer ユーザー登録</h1>
-	<h2>入力</h2>
-	<p>ユーザーID:<input type="text" name="userId"></p>
-	<p>パスワード:<input type="password" name="pass"></p>
-	<p>メールアドレス:<input type="text" name="mail"></p>
-	<p>名前:<input type="text" name="userName"></p>
-	<p>生年月日:<input type="date" value="2018-02-14" name="dateOfBirth"></p>
-	<p><input type="submit" value="登録確認"></p>
+	<p>ユーザーID:<input type="text" name="userId" class="txt"></p>
+	<p>パスワード:<input type="password" name="pass" class="txt"></p>
+	<p>メールアドレス:<input type="text" name="mail" class="txt"></p>
+	<p>名前:<input type="text" name="userName" class="txt"></p>
+	<p>生年月日:<input type="date" value="2018-02-14" name="dateOfBirth" class="txt"></p>
+	<p><input type="submit" value="登録確認" class="button"></p>
 	</form>
+	<c:if test="${not empty errorMsg}">
+		<p><c:out value="${errorMsg}" /></p>
+	</c:if>
+	<a href="RegisterUserServlet" class="btn_04">戻る</a>
 	</div>
 </body>
 </html>

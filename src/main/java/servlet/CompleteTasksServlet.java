@@ -65,8 +65,6 @@ public class CompleteTasksServlet extends HttpServlet {
 							if (task.getTaskGroupId() == taskGroup.getTaskGroupId()) {
 								if (task.getTaskhandleDuration() != null) {
 									totalTaskHandleTime_taskGroup = totalTaskHandleTime_taskGroup.plus(task.getTaskhandleDuration());
-								    //Duration scheduledTime = Duration.between(task.getTentativeStartDateTime(), task.getTentativeEndDateTime());
-								    //long difference = task.getTaskhandleDuration().toMinutes() - scheduledTime.toMinutes();
 								}
 							}
 						}
@@ -82,7 +80,12 @@ public class CompleteTasksServlet extends HttpServlet {
                     todayTotalHandleTaskTime += val;
                 }
             }
+            long todayTotalSceduleTaskTime = 0;
+            for (Tasks task: todayEndTaskList) {
+            	todayTotalSceduleTaskTime += task.getTentativeEndTime();
+            }
 			request.setAttribute("todayTotalHandleTaskTime", todayTotalHandleTaskTime);
+			request.setAttribute("todayTotalSceduleTaskTime", todayTotalSceduleTaskTime);
 
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/completeTasks.jsp");

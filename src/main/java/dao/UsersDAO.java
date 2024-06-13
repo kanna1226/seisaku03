@@ -79,5 +79,37 @@ public class UsersDAO {
 		}
 		return true;
 	}
+	
+	public User findRegisterdUser(User user) {
+		User registerdUser = null;
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException("JDBCドライバを読み込めませんでした");
+		}
+		
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			String sql = "SELECT * FROM USERS WHERE USER_ID = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, user.getUserId());
+			
+			ResultSet rs = pStmt.executeQuery();
+			
+			if (rs.next()) {
+				String userId = rs.getString("USER_ID");
+				String pass = rs.getString("PASS");
+				String mail = rs.getString("MAIL");
+				String userName = rs.getString("USER_NAME");
+				Date dateOfBirth_sql = rs.getDate("DATEOFBIRTH");
+				LocalDate dateOfBirth = dateOfBirth_sql.toLocalDate();
+				user = new User(userId, pass, mail, userName, dateOfBirth);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return registerdUser;
+	}
 
 }

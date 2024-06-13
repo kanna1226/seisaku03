@@ -23,7 +23,7 @@ public class RegisterTasksDAO {
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			
-			String sql = "INSERT INTO TASKS(USER_ID, TASKGROUP_ID, TASK_CONTENT, REGISTER_DATE, TENTATIVE_START_DATETIME,TENTATIVE_END_DATETIME) VALUES(?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO TASKS(USER_ID, TASKGROUP_ID, TASK_CONTENT, REGISTER_DATE, TENTATIVE_START_DATE,TENTATIVE_END_TIME) VALUES(?, ?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			
 			pStmt.setString(1, task.getUserId());
@@ -31,10 +31,10 @@ public class RegisterTasksDAO {
 			pStmt.setString(3, task.getTaskContent());
 			Date registerDate = java.sql.Date.valueOf(task.getRegisterDate());
 			pStmt.setDate(4, registerDate);
-			Timestamp tenativeStartDateTime = Timestamp.valueOf(task.getTentativeStartDateTime());
-			pStmt.setTimestamp(5, tenativeStartDateTime);
-			Timestamp tenativeEndDateTime = Timestamp.valueOf(task.getTentativeEndDateTime());
-			pStmt.setTimestamp(6, tenativeEndDateTime);
+			Date tenativeStartDate = java.sql.Date.valueOf(task.getTentativeStartDate());
+			pStmt.setDate(5, tenativeStartDate);
+			long tenativeEndTime = task.getTentativeEndTime();
+			pStmt.setLong(6, tenativeEndTime);
 			
 			int result = pStmt.executeUpdate();
 			if (result != 1) {

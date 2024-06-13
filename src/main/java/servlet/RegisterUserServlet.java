@@ -79,11 +79,23 @@ public class RegisterUserServlet extends HttpServlet {
 		
 		User registerUser = new User(userId, pass, mail, userName, dateOfBirth);
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("registerUser", registerUser);
+		UsersDAO dao = new UsersDAO();
+		User result = dao.findRegisterdUser(registerUser);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserConfirm.jsp");
-		dispatcher.forward(request, response);
+		if(result == null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("registerUser", registerUser);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserConfirm.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			String errorMsg = "既に同じユーザーIDで登録されています。ユーザーIDを変更、もしくはログインしてください";
+			request.setAttribute("errorMsg", errorMsg);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserForm.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		
 	}
 
 }

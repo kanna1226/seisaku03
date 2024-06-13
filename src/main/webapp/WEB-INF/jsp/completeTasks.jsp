@@ -18,12 +18,17 @@
         <p>合計: <c:out value="${entry.value}" /> 分</p>
         <c:forEach var="task" items="${todayEndTaskList}">
             <c:if test="${task.taskGroupId == entry.key.taskGroupId}">
-                <p>詳細: <c:out value="${task.taskContent}" /></p>
+                <p>
+                詳細: <c:out value="${task.taskContent}" />/
+                予定時間:<c:out value="${task.tentativeEndTime}" />分
+                </p> 
             </c:if>
         </c:forEach>
     </c:forEach>
-    <p>一日の合計時間:<c:out value="${todayTotalHandleTaskTime}" />分</p> 
-    <a href="Logout">ログアウト</a>
+    <p>一日の合計時間:<c:out value="${todayTotalHandleTaskTime}" />分</p>
+    
+    <p>予定時間との差:<c:out value="${todayTotalHandleTaskTime - todayTotalSceduleTaskTime}" />分</p>
+    <a href="Logout" class="btn_04">ログアウト</a>
     </div>
 </body>
 </html>

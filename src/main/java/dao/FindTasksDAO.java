@@ -10,7 +10,6 @@ import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class FindTasksDAO {
 		}
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND REGISTER_DATE = ?　AND END_DATETIME IS NULL ORDER BY TENTATIVE_END_DATETIME";
+			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND REGISTER_DATE = ?　AND END_DATETIME IS NULL ORDER BY TENTATIVE_START_DATE";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, loginUser.getUserId());
 			LocalDate today_LocalDate = LocalDate.now();
@@ -49,11 +48,9 @@ public class FindTasksDAO {
 				String taskContent = rs.getString("TASK_CONTENT");
 				Date registerDate_sql = rs.getDate("REGISTER_DATE");
 				LocalDate registerDate = registerDate_sql.toLocalDate();
-				Timestamp tentativeStartDateTime_sql = rs.getTimestamp("TENTATIVE_START_DATETIME");
-				LocalDateTime tentativeStartDateTime = tentativeStartDateTime_sql.toLocalDateTime();
-				Timestamp tentativeEndDateTime_sql = rs.getTimestamp("TENTATIVE_END_DATETIME");
-				LocalDateTime tentativeEndDateTime = tentativeEndDateTime_sql.toLocalDateTime();
-				java.util.Date tentativeEndDate = Date.from(tentativeEndDateTime.atZone(ZoneId.systemDefault()).toInstant());
+				Date tentativeStartDate_sql = rs.getDate("TENTATIVE_START_DATE");
+				LocalDate tentativeStartDate = tentativeStartDate_sql.toLocalDate();
+				long tentativeEndTime = rs.getLong("TENTATIVE_END_TIME");
 				Timestamp StartDateTime_sql = rs.getTimestamp("START_DATETIME");
 				LocalDateTime startDateTime = null;
 				if(StartDateTime_sql != null) {
@@ -64,7 +61,7 @@ public class FindTasksDAO {
 				if(endDateTime_sql != null) {
 					endDateTime = endDateTime_sql.toLocalDateTime();
 				}
-				Tasks task = new Tasks(taskId, userId, taskGroupId, taskContent, registerDate, tentativeStartDateTime, tentativeEndDateTime, tentativeEndDate, startDateTime, endDateTime);
+				Tasks task = new Tasks(taskId, userId, taskGroupId, taskContent, registerDate, tentativeStartDate, tentativeEndTime, startDateTime, endDateTime);
 				taskList.add(task);
 			}
 		} catch (SQLException e) {
@@ -84,13 +81,13 @@ public class FindTasksDAO {
 		}
 
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND TENTATIVE_START_DATETIME < ? AND END_DATETIME IS NULL ORDER BY TENTATIVE_END_DATETIME";
+			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND TENTATIVE_START_DATE = ? OR TENTATIVE_START_DATE < ? AND END_DATETIME IS NULL ORDER BY TENTATIVE_START_DATE";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, loginUser.getUserId());
 			LocalDate today_LocalDate = LocalDate.now(); //yyyy-MM-dd
-			LocalDateTime today_LocalDateTime = today_LocalDate.atStartOfDay().plusDays(1); 
-			Timestamp today = Timestamp.valueOf(today_LocalDateTime);
-			pStmt.setTimestamp(2, today);
+			Date today = java.sql.Date.valueOf(today_LocalDate);
+			pStmt.setDate(2, today);
+			pStmt.setDate(3, today);
 
 			ResultSet rs = pStmt.executeQuery();
 
@@ -101,11 +98,9 @@ public class FindTasksDAO {
 				String taskContent = rs.getString("TASK_CONTENT");
 				Date registerDate_sql = rs.getDate("REGISTER_DATE");
 				LocalDate registerDate = registerDate_sql.toLocalDate();
-				Timestamp tentativeStartDateTime_sql = rs.getTimestamp("TENTATIVE_START_DATETIME");
-				LocalDateTime tentativeStartDateTime = tentativeStartDateTime_sql.toLocalDateTime();
-				Timestamp tentativeEndDateTime_sql = rs.getTimestamp("TENTATIVE_END_DATETIME");
-				LocalDateTime tentativeEndDateTime = tentativeEndDateTime_sql.toLocalDateTime();
-				java.util.Date tentativeEndDate = Date.from(tentativeEndDateTime.atZone(ZoneId.systemDefault()).toInstant());
+				Date tentativeStartDate_sql = rs.getDate("TENTATIVE_START_DATE");
+				LocalDate tentativeStartDate = tentativeStartDate_sql.toLocalDate();
+				long tentativeEndTime = rs.getLong("TENTATIVE_END_TIME");
 				Timestamp StartDateTime_sql = rs.getTimestamp("START_DATETIME");
 				LocalDateTime startDateTime = null;
 				if(StartDateTime_sql != null) {
@@ -116,7 +111,7 @@ public class FindTasksDAO {
 				if(endDateTime_sql != null) {
 					endDateTime = endDateTime_sql.toLocalDateTime();
 				}
-				Tasks task = new Tasks(taskId, userId, taskGroupId, taskContent, registerDate, tentativeStartDateTime, tentativeEndDateTime, tentativeEndDate, startDateTime, endDateTime);
+				Tasks task = new Tasks(taskId, userId, taskGroupId, taskContent, registerDate, tentativeStartDate, tentativeEndTime, startDateTime, endDateTime);
 				taskList.add(task);
 			}
 		} catch (SQLException e) {
@@ -156,16 +151,14 @@ public class FindTasksDAO {
 				String taskContent = rs.getString("TASK_CONTENT");
 				Date registerDate_sql = rs.getDate("REGISTER_DATE");
 				LocalDate registerDate = registerDate_sql.toLocalDate();
-				Timestamp tentativeStartDateTime_sql = rs.getTimestamp("TENTATIVE_START_DATETIME");
-				LocalDateTime tentativeStartDateTime = tentativeStartDateTime_sql.toLocalDateTime();
-				Timestamp tentativeEndDateTime_sql = rs.getTimestamp("TENTATIVE_END_DATETIME");
-				LocalDateTime tentativeEndDateTime = tentativeEndDateTime_sql.toLocalDateTime();
-				java.util.Date tentativeEndDate = Date.from(tentativeEndDateTime.atZone(ZoneId.systemDefault()).toInstant());
+				Date tentativeStartDate_sql = rs.getDate("TENTATIVE_START_DATE");
+				LocalDate tentativeStartDate = tentativeStartDate_sql.toLocalDate();
+				long tentativeEndTime = rs.getLong("TENTATIVE_END_TIME");
 				Timestamp startDateTime_sql = rs.getTimestamp("START_DATETIME");
 				LocalDateTime startDateTime = startDateTime_sql.toLocalDateTime();
 				Timestamp endDateTime_sql = rs.getTimestamp("END_DATETIME");
 				LocalDateTime endDateTime = endDateTime_sql.toLocalDateTime();
-				Tasks task = new Tasks(taskId, userId, taskGroupId, taskContent, registerDate, tentativeStartDateTime, tentativeEndDateTime,tentativeEndDate, startDateTime, endDateTime);
+				Tasks task = new Tasks(taskId, userId, taskGroupId, taskContent, registerDate, tentativeStartDate, tentativeEndTime, startDateTime, endDateTime);
 				if(task.getStartDateTime() != null && task.getEndDateTime() != null) {
 		        	Duration taskHandleDuration = Duration.between(task.getStartDateTime(), task.getEndDateTime());
 			        task.setTaskHandleDuration(taskHandleDuration);

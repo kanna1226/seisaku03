@@ -15,9 +15,9 @@
 		<p><c:out value="${errorMsg}" /></p>
 	</c:if>
 	<p>ようこそ<c:out value="${loginUser.userId}" />さん</p>
-	<a href="RegisterTasksServlet">タスク入力へ</a>
-	<a href="HandleTasksServlet">業務開始</a>
-	<a href="index.jsp">トップへ</a>
+	<a href="RegisterTasksServlet" class="btn_04">タスク入力へ</a>
+	<a href="HandleTasksServlet" class="btn_04">業務開始</a>
+	<a href="index.jsp" class="btn_04">トップへ</a>
 	</div>
 </body>
 </html>

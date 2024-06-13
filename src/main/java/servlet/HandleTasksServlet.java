@@ -71,7 +71,6 @@ public class HandleTasksServlet extends HttpServlet {
 	    request.setCharacterEncoding("UTF-8");
 
 	    HttpSession session = request.getSession();
-	    User loginUser = (User)session.getAttribute("loginUser");
 
 	    List<Tasks> todayHandleTaskList = (List<Tasks>)session.getAttribute("todayHandleTaskList");
 
@@ -110,9 +109,8 @@ public class HandleTasksServlet extends HttpServlet {
 	        	Duration taskHandleDuration = Duration.between(task.getStartDateTime(), task.getEndDateTime());
 		        task.setTaskHandleDuration(taskHandleDuration);
 		        session.setAttribute("taskHandleDuration" + task.getTaskId(), task.getTaskhandleDuration().toMinutes());
-		        Duration scheduledTime = Duration.between(task.getTentativeStartDateTime(), task.getTentativeEndDateTime());
-		        long difference = taskHandleDuration.toMinutes() - scheduledTime.toMinutes();
-		        session.setAttribute("difference", difference);
+		        long difference = taskHandleDuration.toMinutes() - task.getTentativeEndTime();
+		        session.setAttribute("difference"+ task.getTaskId(), difference);
 	        }
 	        
 	    }

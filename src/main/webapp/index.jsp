@@ -12,14 +12,14 @@
 	<div class="wrapper">
 		<form action="LoginServlet" method="post">
 		<h1>WorkOptimizer</h1>
-		<p>ユーザーID:<input type="text" name="userId"></p>
-		<p>パスワード:<input type="password" name="pass"></p>
-		<p><input type="submit" value="ログイン"></p>
+		<p>ユーザーID:<input type="text" name="userId" class="txt"></p>
+		<p>パスワード:<input type="password" name="pass" class="txt"></p>
+		<input type="submit" value="ログイン" class="button">
 		</form>
 		<c:if test="${not empty errorMsg}">
 			<p><c:out value="${errorMsg}" /></p>
 		</c:if>
-		<a href="RegisterUserServlet">ユーザー登録はこちら</a>
+		<a href="RegisterUserServlet" class="btn_04">ユーザー登録はこちら</a>
 	</div>
 </body>
 </html>

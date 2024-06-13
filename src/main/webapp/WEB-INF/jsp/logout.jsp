@@ -12,7 +12,7 @@
 	<h1>WorkOptimizer</h1>
 	<h2>ログアウト</h2>
 	<p>ログアウトしました</p>
-	<a href="index.jsp">トップへ</a>
+	<a href="index.jsp" class="btn_04">トップへ</a>
 	</div>
 </body>
 </html>
