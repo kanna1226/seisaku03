@@ -14,7 +14,6 @@
 		<h1>WorkOptimizer</h1>
 		<h2>タスク登録</h2>
 		<p><c:out value="${loginUser.userName}"/>さんログイン中</p>
-		<a href="Logout" class="btn_04">ログアウト</a>
 		<form action="RegisterTasksServlet" method="post">
 		<p>業務内容:
 		<select name="taskGroupId"  class="txt">
@@ -35,20 +34,32 @@
 			<p style="color:red"><c:out value="${errorMsg}"/></p>
 		</c:if>
 		<h2>登録一覧（本日登録未完了分）</h2>
-		<c:forEach var="task" items="${todayRegisterTaskList}">
-			<p>
-			業務内容:
-			<c:forEach var="taskGroup" items="${taskGroupList}">
-				<c:if test="${task.taskGroupId == taskGroup.taskGroupId}">
-					<c:out value="${taskGroup.taskGroupName}" />/
-				</c:if>
+		<div class="table-scroll">
+		<table class="table_design10">
+		<tbody>
+			<tr>
+				<th>業務内容</th>
+				<th>詳細</th>
+				<th>期限</th>
+				<th>予定時間</th>
+			</tr>
+			<c:forEach var="task" items="${todayRegisterTaskList}">
+				<tr>
+					<c:forEach var="taskGroup" items="${taskGroupList}">
+						<c:if test="${task.taskGroupId == taskGroup.taskGroupId}">
+							<td><c:out value="${taskGroup.taskGroupName}" /></td>
+						</c:if>
+					</c:forEach>
+						<td><c:out value="${task.taskContent}"/></td>
+						<td><c:out value="${task.tentativeStartDate}" /></td>
+						<td><c:out value="${task.tentativeEndTime}" />分</td>
+				</tr>
 			</c:forEach>
-			詳細:<c:out value="${task.taskContent}"/>/
-			期限:<c:out value="${task.tentativeStartDate}" />/
-			予定時間:<c:out value="${task.tentativeEndTime}" />分
-			</p>
-		</c:forEach>
+		</tbody>
+		</table>
+		</div>
 		<p><a href="HandleTasksServlet" class="btn_04">業務開始</a></p>
+		<a href="Logout" class="btn_04">ログアウト</a>
 	</div>
 </body>
 </html>

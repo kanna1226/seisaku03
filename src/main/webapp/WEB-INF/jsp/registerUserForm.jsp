@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
 	<c:if test="${not empty errorMsg}">
 		<p><c:out value="${errorMsg}" /></p>
 	</c:if>
-	<a href="RegisterUserServlet" class="btn_04">戻る</a>
+	<a href="index.jsp" class="btn_04">ログイン画面へ</a>
 	</div>
 </body>
 </html>

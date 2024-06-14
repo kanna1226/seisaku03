@@ -89,7 +89,7 @@ public class RegisterUserServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserConfirm.jsp");
 			dispatcher.forward(request, response);
 		} else {
-			String errorMsg = "既に同じユーザーIDで登録されています。ユーザーIDを変更、もしくはログインしてください";
+			String errorMsg = "既に同じユーザーIDで登録されています。ユーザーIDを変更するか、ログインしてください";
 			request.setAttribute("errorMsg", errorMsg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserForm.jsp");
 			dispatcher.forward(request, response);

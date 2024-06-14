@@ -81,7 +81,7 @@ public class FindTasksDAO {
 		}
 
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND TENTATIVE_START_DATE = ? OR TENTATIVE_START_DATE < ? AND END_DATETIME IS NULL ORDER BY TENTATIVE_START_DATE";
+			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND (TENTATIVE_START_DATE = ? OR TENTATIVE_START_DATE < ?) AND END_DATETIME IS NULL ORDER BY TENTATIVE_START_DATE";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, loginUser.getUserId());
 			LocalDate today_LocalDate = LocalDate.now(); //yyyy-MM-dd

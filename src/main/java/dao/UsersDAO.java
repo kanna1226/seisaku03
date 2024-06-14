@@ -102,7 +102,7 @@ public class UsersDAO {
 				String userName = rs.getString("USER_NAME");
 				Date dateOfBirth_sql = rs.getDate("DATEOFBIRTH");
 				LocalDate dateOfBirth = dateOfBirth_sql.toLocalDate();
-				user = new User(userId, pass, mail, userName, dateOfBirth);
+				registerdUser = new User(userId, pass, mail, userName, dateOfBirth);
 			}
 			
 		} catch (SQLException e) {

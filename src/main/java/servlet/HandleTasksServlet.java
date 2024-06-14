@@ -71,6 +71,7 @@ public class HandleTasksServlet extends HttpServlet {
 	    request.setCharacterEncoding("UTF-8");
 
 	    HttpSession session = request.getSession();
+	    User loginUser = (User)session.getAttribute("loginUser");
 
 	    List<Tasks> todayHandleTaskList = (List<Tasks>)session.getAttribute("todayHandleTaskList");
 

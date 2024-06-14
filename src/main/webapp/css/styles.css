@@ -1,16 +1,17 @@
 @charset "UTF-8";
 
 body {
-	background-image: url("../images/haikei.jpg");
+	background-image: url("../images/aozora.jpg");
 	font-family: 'Sawarabi Mincho', sans-serif;
+	color: #363636;
 }
 
 .wrapper {
 	width: 80%;
 	margin: 4rem auto;
 	text-align: center;
-	background-color: #003333;
-	color: #ffffff;
+	background-color: #b0c4de;
+/*	color: #ffffff;*/
 	border-radius: 20px;
 	padding: 1rem;
 }
@@ -22,42 +23,67 @@ a.btn_04 {
 	margin: 1rem auto;
 	padding: 12px 48px;
 	font-size: 15px;
-	border: 2px solid #008080;
-	background: #008080;
-	color: #fff;
-	border-radius: 20px;
+	border: 2px solid #00a497;
+	background: #00a497;
+	color: #363636;
+	border-radius: 10px;
 	transition: 0.5s;
 }
 a.btn_04:hover {
-	color: #27acd9;
-	background: #fff;
+	background: #00998c;
 }
 
 .button {
   display       : inline-block;
-  border-radius : 20px;          /* 角丸       */
+  border-radius : 10px;          /* 角丸       */
   font-size     : 15px;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
   padding       : 12px 48px;   /* 余白       */
-  background    : #008080;     /* 背景色     */
-  color         : #ffffff;     /* 文字色     */
+  background    : #00a497;     /* 背景色     */
+  color         : #363636;     /* 文字色     */
   line-height   : 1em;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
-  border        : 2px solid #008080;    /* 枠の指定 */
+  border        : 2px solid #00a497;    /* 枠の指定 */
 }
 
 .button:hover {
-  color         : #6666ff;     /* 背景色     */
-  background    : #ffffff;     /* 文字色     */
+  background    : #00998c;     /* 文字色     */
 }
 
 .txt {
-    display: inline-block;
+	display: inline-block;
     width: 20%;
     padding: 0.5em;
     border: 1px solid #999;
     box-sizing: border-box;
     background: #f2f2f2;
     margin: 0.5em 0;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+.table_design10 {
+	margin: auto;
+  	border-collapse: collapse;
+  	min-width: 700px;
+  	font-weight: bold;
+  	text-align: center;
+}
+.table_design10 th, .table_design10 td {
+  padding: .5em 1em;
+  border: 2px solid #00998c;
+}
+.table_design10 th {
+  background: #00a497;
+/*  color: #fff;*/
+  border-right: 2px solid #00998c;
+  border-top: 2px solid #00998c;
+}
+.table_design10 th:last-of-type {
+  border-right: 2px solid #00998c;
+}
+
+span {
+	font-size: 12px;
 }
