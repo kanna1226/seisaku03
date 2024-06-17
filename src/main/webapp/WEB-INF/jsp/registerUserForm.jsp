@@ -6,17 +6,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WorkOptimizer - Register</title>
 </head>
 <body>
 	<div class="wrapper">
-	<form action="RegisterUserServlet" method="post">
+	<form class="center" action="RegisterUserServlet" method="post">
 	<h1>WorKOptimizer ユーザー登録</h1>
-	<p>ユーザーID:<input type="text" name="userId" class="txt"></p>
-	<p>パスワード:<input type="password" name="pass" class="txt"></p>
-	<p>メールアドレス:<input type="text" name="mail" class="txt"></p>
-	<p>名前:<input type="text" name="userName" class="txt"></p>
-	<p>生年月日:<input type="date" value="2018-02-14" name="dateOfBirth" class="txt"></p>
+	<table class="registerForm">
+	<tr>
+		<th><label for="userId">ユーザーID:</label></th>
+		<td><input type="text" name="userId" class="txt"></td>
+	</tr>
+	<tr>
+		<th><label for="pass">パスワード:</label></th>
+		<td><input type="password" name="pass" class="txt"></td>
+	</tr>
+	<tr>
+		<th><label for="mail">メールアドレス:</label></th>
+		<td><input type="email" name="mail" class="txt"></td>
+	</tr>
+	<tr>
+		<th><label for="name">名前:</label></th>
+		<td><input type="text" name="userName" class="txt"></td>
+	</tr>
+	<tr>
+		<th><label for="dateValue">生年月日:</label></th>
+		<td><input type="date" value="2018-02-14" name="dateOfBirth" class="txt"></td>
+	</tr>
+	</table>
 	<p><input type="submit" value="登録確認" class="button"></p>
 	</form>
 	<c:if test="${not empty errorMsg}">

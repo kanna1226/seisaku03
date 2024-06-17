@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WorkOptimizer -complete tasks-</title>
 </head>
 <body>
@@ -34,7 +35,8 @@
         </table>
         </div>
     </c:forEach>
-    <h3>一日の合計時間:<c:out value="${todayTotalHandleTaskTime}" />分 予定時間との差:<c:out value="${todayTotalHandleTaskTime - todayTotalSceduleTaskTime}" />分</h3>
+    <h3>一日の合計時間:<c:out value="${todayTotalHandleTaskTime}" />分</h3>
+    <h3>予定時間との差:<c:out value="${todayTotalHandleTaskTime - todayTotalSceduleTaskTime}" />分</h3>
     <a href="Logout" class="btn_04">ログアウト</a>
     </div>
 </body>

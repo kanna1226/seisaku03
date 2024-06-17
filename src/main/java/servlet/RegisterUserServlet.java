@@ -77,23 +77,39 @@ public class RegisterUserServlet extends HttpServlet {
 		String dateValue = request.getParameter("dateOfBirth");
 		LocalDate dateOfBirth = LocalDate.parse(dateValue);
 		
-		User registerUser = new User(userId, pass, mail, userName, dateOfBirth);
+		String errorMsg = null;
 		
-		UsersDAO dao = new UsersDAO();
-		User result = dao.findRegisterdUser(registerUser);
-		
-		if(result == null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("registerUser", registerUser);
+		if (userId != null && userId.length() != 0 
+				&& pass != null && pass.length() != 0
+				&& mail != null && mail.length() != 0
+				&& userName != null && userName.length() != 0
+				&& dateValue != null && dateValue.length() != 0) {
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserConfirm.jsp");
-			dispatcher.forward(request, response);
+			User registerUser = new User(userId, pass, mail, userName, dateOfBirth);
+			
+			UsersDAO dao = new UsersDAO();
+			User result = dao.findRegisterdUser(registerUser);
+			
+			
+			if(result == null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("registerUser", registerUser);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserConfirm.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				errorMsg = "既に同じユーザーIDで登録されています。ユーザーIDを変更するか、ログインしてください";
+				request.setAttribute("errorMsg", errorMsg);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserForm.jsp");
+				dispatcher.forward(request, response);
+			}
 		} else {
-			String errorMsg = "既に同じユーザーIDで登録されています。ユーザーIDを変更するか、ログインしてください";
+			errorMsg = "入力漏れがあります。全ての欄を入力してください";
 			request.setAttribute("errorMsg", errorMsg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserForm.jsp");
 			dispatcher.forward(request, response);
 		}
+		
 		
 		
 	}

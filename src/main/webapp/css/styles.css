@@ -53,7 +53,6 @@ a.btn_04:hover {
 
 .txt {
 	display: inline-block;
-    width: 20%;
     padding: 0.5em;
     border: 1px solid #999;
     box-sizing: border-box;
@@ -86,4 +85,52 @@ a.btn_04:hover {
 
 span {
 	font-size: 12px;
+}
+
+.registerForm{
+	margin: auto;
+}
+
+.center {
+	width: fit-content;
+	margin: auto;
+}
+.registerTask {
+	width: 60%;
+	background-color: #fff;
+	border-radius: 20px;
+	margin: 1rem auto;
+	padding: 1rem;
+}
+.taskRegister {
+	margin:auto;
+}
+@media screen and (max-width: 600px) {
+	a.btn_04 {
+		font-size: 1rem;
+		padding: 0.5rem;
+		width: 70%;
+		margin: 0.5rem auto;
+	}
+	.button {
+		font-size: 1rem;
+		padding: 0.5rem;
+		width: 50%;
+		margin: 0.5rem auto;
+	}
+	.table_design10 {
+		width: 80%;
+	}
+	.registerTask {
+		width: 90%;
+	}
+	th {
+		font-size: 0.8rem;
+	}
+	h2 {
+		font-size: 1.2rem;
+	}
+	h3 {
+		font-size:1.05rem;
+	}
 }

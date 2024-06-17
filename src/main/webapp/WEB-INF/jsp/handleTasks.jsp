@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WorkOptimizer -handle tasks-</title>
 <%-- <script>
 function disableButton(button) {
@@ -35,10 +36,9 @@ window.onload = function() {
 <body>
 	<div class="wrapper">
     <h1>WorkOptimizer</h1>
-    <h2>タスク一覧</h2>
     <p><c:out value="${loginUser.userName}"/>さんログイン中</p>
     <a href="RegisterTasksServlet" class="btn_04">タスク入力へ</a>
-    
+    <h2>タスク一覧</h2>
     <form action="HandleTasksServlet" method="post">
     <div class="table-scroll">
     <table class="table_design10">
@@ -69,7 +69,7 @@ window.onload = function() {
         	</td>
         	<td>
         		<input type="submit" name="${'action' += task.taskId}" value="end" class="button"><br>
-        		<sapn><c:out value="${sessionScope['endDateTime' += task.taskId]}" /></sapn>
+        		<span><c:out value="${sessionScope['endDateTime' += task.taskId]}" /></span>
         	</td>
         	<%--input type="submit" id="start_${task.taskId}" name="${'action' += task.taskId}" value="start" onclick="handleStartClick('${task.taskId}');"--%>
         	<%--input type="submit" id="end_${task.taskId}" name="${'action' += task.taskId}" value="end" onclick="handleEndClick('${task.taskId}');"--%>

@@ -7,32 +7,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WorkOptimizer -register tasks-</title>
 </head>
 <body>
 	<div class="wrapper">
 		<h1>WorkOptimizer</h1>
-		<h2>タスク登録</h2>
 		<p><c:out value="${loginUser.userName}"/>さんログイン中</p>
-		<form action="RegisterTasksServlet" method="post">
-		<p>業務内容:
-		<select name="taskGroupId"  class="txt">
-			<c:forEach var="taskGroup" items="${taskGroupList}">
-				<option value="${taskGroup.taskGroupId}"><c:out value="${taskGroup.taskGroupName}"/></option>
-			</c:forEach>
-		</select>
-		詳細:<input type="text" name="taskContent" class="txt"></p>
-		<p>
-		期限:
-		<fmt:formatDate value="${currentDate}" pattern="yyyy-MM-dd" var="todayDate" />
-		<input type="date" value="${todayDate}" name="tentativeStartDateString" class="txt">
-		予定時間:<input type="number" name="tentativeEndTimeString" class="txt">分
-		</p>
+		<div class="registerTask">
+		<h2 class="taskRegister">タスク登録</h2>
+		<form class="center" action="RegisterTasksServlet" method="post">
+		<table class="registerForm">
+			<tr>
+				<th><label for="taskGroup">業務内容:</label></th>
+				<td>
+					<select name="taskGroupId"  class="txt">
+						<c:forEach var="taskGroup" items="${taskGroupList}">
+							<option value="${taskGroup.taskGroupId}"><c:out value="${taskGroup.taskGroupName}"/></option>
+						</c:forEach>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th><label for="taskContent">詳細:</label></th>
+				<td><input type="text" name="taskContent" class="txt"></td>
+			</tr>
+			<tr>
+				<th><label for="tentativeStartDateString">期限:</label></th>
+				<td>
+					<fmt:formatDate value="${currentDate}" pattern="yyyy-MM-dd" var="todayDate" />
+					<input type="date" value="${todayDate}" name="tentativeStartDateString" class="txt">
+				</td>
+			</tr>
+			<tr>
+				<th><label for="tentativeEndTimeString">予定時間:</label></th>
+				<td><input type="number" name="tentativeEndTimeString" class="txt">分</td>
+			</tr>
+		</table>
 		<input type="submit" value="登録" class="button">
 		</form>
 		<c:if test="${not empty errorMsg}">
 			<p style="color:red"><c:out value="${errorMsg}"/></p>
 		</c:if>
+		</div>
 		<h2>登録一覧（本日登録未完了分）</h2>
 		<div class="table-scroll">
 		<table class="table_design10">
