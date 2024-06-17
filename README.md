@@ -21,24 +21,26 @@ https://github.com/kanna1226/seisaku03/assets/168618983/32cc9f64-9566-4a03-8f94-
 
 # Usage
 
-1.Eclipse上でプロジェクトのクローンをする
-　Gitリポジトリーをビューに追加　→　「Gitリポジトリーをクローンし、このビューへ追加」を押下
-2.プロジェクトのインポート
-　作業ツリーを右クリックし、「プロジェクトのインポート」を押下、WorkOptimizerフォルダを作成し、インポート
-3.H2データベースの準備
-　/WorkOptimizer/WorkOptimizer/01.データベース内にある下記ファイルをコピー
-　　workoptimizer.mv.db
-　　workoptimizer.trace.db
-  /dataに上記ファイルを配置
-4.サーバーTomcat9_Java17で index.jsp を実行
+実行準備
+1.Eclipse上でプロジェクトのクローンをする  
+　Gitリポジトリーをビューに追加　→　「Gitリポジトリーをクローンし、このビューへ追加」を押下  
+1.プロジェクトのインポート  
+　作業ツリーを右クリックし、「プロジェクトのインポート」を押下、WorkOptimizerフォルダを作成し、インポート  
+1.H2データベースの準備  
+　/WorkOptimizer/WorkOptimizer/01.データベース内にある下記ファイルをコピー  
+　　workoptimizer.mv.db  
+　　workoptimizer.trace.db  
+  /dataに上記ファイルを配置  
+1.サーバーTomcat9_Java17で index.jsp を実行  
 
-5.ユーザーID:test パスワード:1234 でログイン
-6.「タスク入力」を押下
-7.タスクを入力して「登録」を押下
-8.「業務開始」を押下
-9.適切な業務の「start」「end」を押下
-10.業務終了を押下
-11.ログアウトを押下
+操作手順
+1.ユーザーID:test パスワード:1234 でログイン  
+1.「タスク入力」を押下  
+1.タスクを入力して「登録」を押下  
+1.「業務開始」を押下  
+1.適切な業務の「start」「end」を押下  
+1.業務終了を押下  
+1.ログアウトを押下  
 
 # Author
 
