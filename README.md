@@ -21,7 +21,7 @@ https://github.com/kanna1226/seisaku03/assets/168618983/32cc9f64-9566-4a03-8f94-
 
 # Usage
 
-実行準備
+実行準備  
 1.Eclipse上でプロジェクトのクローンをする  
 　Gitリポジトリーをビューに追加　→　「Gitリポジトリーをクローンし、このビューへ追加」を押下  
 2.プロジェクトのインポート  
@@ -30,10 +30,10 @@ https://github.com/kanna1226/seisaku03/assets/168618983/32cc9f64-9566-4a03-8f94-
 　/WorkOptimizer/WorkOptimizer/01.データベース内にある下記ファイルをコピー  
 　　workoptimizer.mv.db  
 　　workoptimizer.trace.db  
-  /dataに上記ファイルを配置  
+　/dataに上記ファイルを配置  
 4.サーバーTomcat9_Java17で index.jsp を実行  
 
-操作手順
+操作手順  
 1.ユーザーID:test パスワード:1234 でログイン  
 2.「タスク入力」を押下  
 3.タスクを入力して「登録」を押下  
