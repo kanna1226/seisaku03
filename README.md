@@ -4,7 +4,8 @@
 
 # DEMO
 
-"hoge"の魅力が直感的に伝えわるデモ動画や図解を載せる
+実行動画です
+https://github.com/kanna1226/seisaku03/assets/168618983/32cc9f64-9566-4a03-8f94-34990ae0524a
 
 # Features
 
@@ -17,8 +18,6 @@
 * H2データベース
 * Eclipse2023以降
 * Apache Tomcat (Tomcat9_Java17)
-
-# Installation
 
 # Usage
 
