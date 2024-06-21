@@ -161,7 +161,7 @@ public class FindTasksDAO {
 				Tasks task = new Tasks(taskId, userId, taskGroupId, taskContent, registerDate, tentativeStartDate, tentativeEndTime, startDateTime, endDateTime);
 				if(task.getStartDateTime() != null && task.getEndDateTime() != null) {
 		        	Duration taskHandleDuration = Duration.between(task.getStartDateTime(), task.getEndDateTime());
-			        task.setTaskHandleDuration(taskHandleDuration);
+			        task.setTaskHandleDuration(taskHandleDuration.toMinutes());
 		        }
 				todayEndTasks.add(task);
 				}

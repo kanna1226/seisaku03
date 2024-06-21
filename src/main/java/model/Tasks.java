@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -15,7 +14,7 @@ public class Tasks implements Serializable {
 	private long tentativeEndTime;
 	private LocalDateTime startDateTime;
 	private LocalDateTime endDateTime;
-	private Duration taskHandleDuration;
+	private long taskHandleDuration;
 	
 	public Tasks() {}
 	public Tasks(String userId, int taskGroup, String taskContent, LocalDate tentativeStartDate, long tentativeEndTime) {
@@ -48,7 +47,7 @@ public class Tasks implements Serializable {
 	public long getTentativeEndTime() { return tentativeEndTime; }
 	public LocalDateTime getStartDateTime() { return startDateTime; }
 	public LocalDateTime getEndDateTime() { return endDateTime; }
-	public Duration getTaskhandleDuration() { return taskHandleDuration; }
+	public long getTaskhandleDuration() { return taskHandleDuration; }
 	
 	public void setStartDateTime(LocalDateTime startDateTime) {
 		this.startDateTime = startDateTime;
@@ -57,7 +56,7 @@ public class Tasks implements Serializable {
 		this.endDateTime = endDateTime;
 	}
 	
-	public void setTaskHandleDuration(Duration taskHandleDuration) {
+	public void setTaskHandleDuration(long taskHandleDuration) {
 		this.taskHandleDuration = taskHandleDuration;
 	}
  

@@ -21,7 +21,8 @@
 			<tr>
 				<th><label for="taskGroup">業務内容:</label></th>
 				<td>
-					<select name="taskGroupId"  class="txt">
+					<select name="taskGroupId"  class="txt" required>
+						<option value="" selected disabled>選択してください</option>
 						<c:forEach var="taskGroup" items="${taskGroupList}">
 							<option value="${taskGroup.taskGroupId}"><c:out value="${taskGroup.taskGroupName}"/></option>
 						</c:forEach>

@@ -12,6 +12,7 @@
 <body>
 	<div class="wrapper">
     <h1>WorkOptimizer</h1>
+    <p><c:out value="${loginUser.userName}"/>さんログイン中</p>
     <h2>業務完了 お疲れさまでした！</h2>
     <h2>今日の成果</h2>
     <c:forEach var="entry" items="${totalTaskHandleTimeMap}">
@@ -22,12 +23,14 @@
         	<tr>
         		<th>詳細</th>
         		<th>予定時間</th>
+        		<th>かかった時間</th>
         	</tr>
         	<c:forEach var="task" items="${todayEndTaskList}">
         		<tr>
             	<c:if test="${task.taskGroupId == entry.key.taskGroupId}">
                 	<td><c:out value="${task.taskContent}" /></td>
                 	<td><c:out value="${task.tentativeEndTime}" />分</td>
+                	<td><c:out value="${task.taskhandleDuration}" />分</td>
             	</c:if>
             	</tr>
         	</c:forEach>

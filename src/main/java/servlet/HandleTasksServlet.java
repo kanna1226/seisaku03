@@ -108,8 +108,8 @@ public class HandleTasksServlet extends HttpServlet {
 	        
 	        if(task.getStartDateTime() != null && task.getEndDateTime() != null) {
 	        	Duration taskHandleDuration = Duration.between(task.getStartDateTime(), task.getEndDateTime());
-		        task.setTaskHandleDuration(taskHandleDuration);
-		        session.setAttribute("taskHandleDuration" + task.getTaskId(), task.getTaskhandleDuration().toMinutes());
+		        task.setTaskHandleDuration(taskHandleDuration.toMinutes());
+		        session.setAttribute("taskHandleDuration" + task.getTaskId(), task.getTaskhandleDuration());
 		        long difference = taskHandleDuration.toMinutes() - task.getTentativeEndTime();
 		        session.setAttribute("difference"+ task.getTaskId(), difference);
 	        }
