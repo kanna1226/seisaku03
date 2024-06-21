@@ -23,10 +23,13 @@ https://github.com/kanna1226/seisaku03/assets/168618983/32cc9f64-9566-4a03-8f94-
 
 実行準備  
 1.Eclipse上でプロジェクトのクローンをする  
+　https://github.com/kanna1226/seisaku03
+  でGitのコードをコピーする　　
 　Gitリポジトリーをビューに追加　→　「Gitリポジトリーをクローンし、このビューへ追加」を押下  
  ![01 start](https://github.com/kanna1226/seisaku03/assets/168618983/c4feb49d-43d0-44c4-9c88-6abec785be1d)  
  ![02 clone](https://github.com/kanna1226/seisaku03/assets/168618983/e35a80f7-7b01-46da-9d98-5f86d70ea874)  
- ![03 cloneDetale1](https://github.com/kanna1226/seisaku03/assets/168618983/c2b3f13e-45d6-44ca-8d05-209c45c682d4)  
+ ![03 cloneDetale1](https://github.com/kanna1226/seisaku03/assets/168618983/c2b3f13e-45d6-44ca-8d05-209c45c682d4) 
+ フォルダ選択の際、参照を押下し、適切なフォルダを選択、「WorkOptimizer」というファイル名で保存し、「完了」を押下  
  ![04 cloneSelectFile](https://github.com/kanna1226/seisaku03/assets/168618983/171b3807-62c7-4a49-b167-d5ef4eb8aede)  
  ![05 cloneFinish](https://github.com/kanna1226/seisaku03/assets/168618983/e5752623-f1f7-4a11-9efa-a686f80c7b70)  
 
