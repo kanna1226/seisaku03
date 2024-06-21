@@ -12,6 +12,7 @@
 <body>
 	<div class="wrapper">
     <h1>WorkOptimizer</h1>
+    <p><c:out value="${loginUser.userName}"/>さんログイン中</p>
     <h2>業務完了 お疲れさまでした！</h2>
     <h2>今日の成果</h2>
     <c:forEach var="entry" items="${totalTaskHandleTimeMap}">
