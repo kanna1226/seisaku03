@@ -47,6 +47,10 @@ public class CompleteTasksServlet extends HttpServlet {
 		} else {
 			GetTaskListLogic getTaskListLogic = new GetTaskListLogic();
 			List<Tasks> todayEndTaskList = getTaskListLogic.getTodayEndTasksExecute(loginUser);
+			for (Tasks task: todayEndTaskList) {
+		        	Duration taskHandleDuration = Duration.between(task.getStartDateTime(), task.getEndDateTime());
+			        task.setTaskHandleDuration(taskHandleDuration.toMinutes());
+			}
 			session.setAttribute("todayEndTaskList", todayEndTaskList);
 
 			Map<TaskGroup, Long> totalTaskHandleTimeMap = new HashMap<>();
@@ -63,8 +67,8 @@ public class CompleteTasksServlet extends HttpServlet {
 						Duration totalTaskHandleTime_taskGroup = Duration.ZERO;
 						for (Tasks task : todayEndTaskList) {
 							if (task.getTaskGroupId() == taskGroup.getTaskGroupId()) {
-								if (task.getTaskhandleDuration() != null) {
-									totalTaskHandleTime_taskGroup = totalTaskHandleTime_taskGroup.plus(task.getTaskhandleDuration());
+								if (Duration.ofMinutes(task.getTaskhandleDuration()) != null) {
+									totalTaskHandleTime_taskGroup = totalTaskHandleTime_taskGroup.plus(Duration.ofMinutes(task.getTaskhandleDuration()));
 								}
 							}
 						}
