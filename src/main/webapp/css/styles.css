@@ -83,6 +83,10 @@ a.btn_04:hover {
   border-right: 2px solid #00998c;
 }
 
+.highlight {
+    color: #b33e5c; /* ハイライト用の背景色（淡い赤） */
+}
+
 span {
 	font-size: 12px;
 }

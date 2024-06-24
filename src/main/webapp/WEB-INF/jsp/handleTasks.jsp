@@ -54,28 +54,36 @@ window.onload = function() {
         	<th>予定との差</th>
         </tr>
     <c:forEach var="task" items="${todayHandleTaskList}">
-        <tr>
+    	<tr>
         	<c:forEach var="taskGroup" items="${taskGroupList}">
             	<c:if test="${task.taskGroupId == taskGroup.taskGroupId}">
-              	  <td><c:out value="${taskGroup.taskGroupName}" /></td>
+              	  <td class="${not empty sessionScope['startDateTime' += task.taskId] && empty sessionScope['endDateTime' += task.taskId] ? 'highlight' : ''}">
+              	  	<c:out value="${taskGroup.taskGroupName}" />
+              	  </td>
            		</c:if>
         	</c:forEach>
-        	<td><c:out value="${task.taskContent}"/></td>
-        	<td><c:out value="${task.tentativeStartDate}" /></td>
-        	<td><c:out value="${task.tentativeEndTime}" />分</td>
-        	<td>
+        	<td class="${not empty sessionScope['startDateTime' += task.taskId] && empty sessionScope['endDateTime' += task.taskId] ? 'highlight' : ''}">
+        		<c:out  value="${task.taskContent}"/>
+        	</td>
+        	<td class="${not empty sessionScope['startDateTime' += task.taskId] && empty sessionScope['endDateTime' += task.taskId] ? 'highlight' : ''}">
+        		<c:out value="${task.tentativeStartDate}" />
+        	</td>
+        	<td class="${not empty sessionScope['startDateTime' += task.taskId] && empty sessionScope['endDateTime' += task.taskId] ? 'highlight' : ''}">
+        		<c:out value="${task.tentativeEndTime}" />分
+        	</td>
+        	<td class="${not empty sessionScope['startDateTime' += task.taskId] && empty sessionScope['endDateTime' += task.taskId] ? 'highlight' : ''}">
         		<input type="submit" name="${'action' += task.taskId}" value="start" class="button"><br>
         		<span><c:out value="${sessionScope['startDateTime' += task.taskId]}" /></span>
         	</td>
-        	<td>
+        	<td class="${not empty sessionScope['startDateTime' += task.taskId] && empty sessionScope['endDateTime' += task.taskId] ? 'highlight' : ''}">
         		<input type="submit" name="${'action' += task.taskId}" value="end" class="button"><br>
         		<span><c:out value="${sessionScope['endDateTime' += task.taskId]}" /></span>
         	</td>
         	<%--input type="submit" id="start_${task.taskId}" name="${'action' += task.taskId}" value="start" onclick="handleStartClick('${task.taskId}');"--%>
         	<%--input type="submit" id="end_${task.taskId}" name="${'action' += task.taskId}" value="end" onclick="handleEndClick('${task.taskId}');"--%>
-       		<td><c:out value="${sessionScope['taskHandleDuration' += task.taskId]}" />分</td>
-        	<td><c:out value="${sessionScope['difference' += task.taskId]}" />分</td>
-        </tr> 
+       		<td class="${not empty sessionScope['startDateTime' += task.taskId] && empty sessionScope['endDateTime' += task.taskId] ? 'highlight' : ''}"><c:out value="${sessionScope['taskHandleDuration' += task.taskId]}" />分</td>
+        	<td class="${not empty sessionScope['startDateTime' += task.taskId] && empty sessionScope['endDateTime' += task.taskId] ? 'highlight' : ''}"><c:out value="${sessionScope['difference' += task.taskId]}" />分</td>
+        </tr>
     </c:forEach>
     </tbody>
     </table>
