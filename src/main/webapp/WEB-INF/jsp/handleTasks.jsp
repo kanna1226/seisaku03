@@ -36,7 +36,7 @@ window.onload = function() {
 <body>
 	<div class="wrapper">
     <h1>WorkOptimizer</h1>
-    <p><c:out value="${loginUser.userName}"/>さんログイン中</p>
+    <p><c:out value="${loginUser.userId}"/>さんログイン中</p>
     <a href="RegisterTasksServlet" class="btn_04">タスク入力へ</a>
     <h2>タスク一覧</h2>
     <form action="HandleTasksServlet" method="post">

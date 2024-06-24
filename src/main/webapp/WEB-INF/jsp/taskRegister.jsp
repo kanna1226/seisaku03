@@ -13,7 +13,7 @@
 <body>
 	<div class="wrapper">
 		<h1>WorkOptimizer</h1>
-		<p><c:out value="${loginUser.userName}"/>さんログイン中</p>
+		<p><c:out value="${loginUser.userId}"/>さんログイン中</p>
 		<div class="registerTask">
 		<h2 class="taskRegister">タスク登録</h2>
 		<form class="center" action="RegisterTasksServlet" method="post">
