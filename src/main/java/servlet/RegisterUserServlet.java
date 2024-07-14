@@ -98,12 +98,24 @@ public class RegisterUserServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserConfirm.jsp");
 				dispatcher.forward(request, response);
 			} else {
-				errorMsg = "既に同じユーザーIDで登録されています。ユーザーIDを変更するか、ログインしてください";
+				request.setAttribute("userId", userId);
+				request.setAttribute("pass", pass);
+				request.setAttribute("mail", mail);
+				request.setAttribute("userName", userName);
+				request.setAttribute("dateValue", dateValue);
+				
+				errorMsg = "既に同じユーザーIDで登録されています。<br>ユーザーIDを変更するか、<br>既に登録済みの場合はログインしてください。";
 				request.setAttribute("errorMsg", errorMsg);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserForm.jsp");
 				dispatcher.forward(request, response);
 			}
 		} else {
+			request.setAttribute("userId", userId);
+			request.setAttribute("pass", pass);
+			request.setAttribute("mail", mail);
+			request.setAttribute("userName", userName);
+			request.setAttribute("dateValue", dateValue);
+			
 			errorMsg = "入力漏れがあります。全ての欄を入力してください";
 			request.setAttribute("errorMsg", errorMsg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/registerUserForm.jsp");

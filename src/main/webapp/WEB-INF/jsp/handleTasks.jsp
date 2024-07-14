@@ -9,29 +9,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WorkOptimizer -handle tasks-</title>
-<%-- <script>
-function disableButton(button) {
-    button.disabled = true;
-}
+<script>
+    function saveScrollPosition() {
+        var scrollPos = window.scrollY || document.documentElement.scrollTop;
+        document.cookie = "scrollPos=" + scrollPos;
+    }
 
-function handleStartClick(taskId) {
-    document.getElementById('start_' + taskId).disabled = true;
-    document.getElementById('end_' + taskId).disabled = false;
-}
+    function loadScrollPosition() {
+        var cookieArr = document.cookie.split(";");
+        for (var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split("=");
+            if (cookiePair[0].trim() === "scrollPos") {
+                window.scrollTo(0, parseInt(cookiePair[1]));
+                break;
+            }
+        }
+    }
 
-function handleEndClick(taskId) {
-    document.getElementById('end_' + taskId).disabled = true;
-}
-
-window.onload = function() {
-    // ページロード時にエンドボタンを無効にする
-    var tasks = document.querySelectorAll('[data-task-id]');
-    tasks.forEach(function(task) {
-        var taskId = task.getAttribute('data-task-id');
-        document.getElementById('end_' + taskId).disabled = true;
-    });
-};
-</script>--%>
+    window.onload = function() {
+        loadScrollPosition();
+    }
+</script>
 </head>
 <body>
 	<div class="wrapper">
@@ -39,7 +37,7 @@ window.onload = function() {
     <p><c:out value="${loginUser.userId}"/>さんログイン中</p>
     <a href="RegisterTasksServlet" class="btn_04">タスク入力へ</a>
     <h2>タスク一覧</h2>
-    <form action="HandleTasksServlet" method="post">
+    <form action="HandleTasksServlet" method="post"	onsubmit="saveScrollPosition()">
     <div class="table-scroll">
     <table class="table_design10">
     <tbody>

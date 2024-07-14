@@ -9,6 +9,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WorkOptimizer -register tasks-</title>
+<script>
+    function saveScrollPosition() {
+        var scrollPos = window.scrollY || document.documentElement.scrollTop;
+        document.cookie = "scrollPos=" + scrollPos;
+    }
+
+    function loadScrollPosition() {
+        var cookieArr = document.cookie.split(";");
+        for (var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split("=");
+            if (cookiePair[0].trim() === "scrollPos") {
+                window.scrollTo(0, parseInt(cookiePair[1]));
+                break;
+            }
+        }
+    }
+
+    window.onload = function() {
+        loadScrollPosition();
+    }
+</script>
 </head>
 <body>
 	<div class="wrapper">
@@ -16,7 +37,7 @@
 		<p><c:out value="${loginUser.userId}"/>さんログイン中</p>
 		<div class="registerTask">
 		<h2 class="taskRegister">タスク登録</h2>
-		<form class="center" action="RegisterTasksServlet" method="post">
+		<form class="center" action="RegisterTasksServlet" method="post" onsubmit="saveScrollPosition()">
 		<table class="registerForm">
 			<tr>
 				<th><label for="taskGroup">業務内容:</label></th>
