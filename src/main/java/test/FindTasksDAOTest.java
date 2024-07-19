@@ -31,7 +31,7 @@ public class FindTasksDAOTest {
 	
 	public static void testFindTodayRegisterTasksOK(User loginUser) {
 		FindTasksDAO dao = new FindTasksDAO();
-		List<Tasks> result = dao.findTodayRegisterTasks(loginUser);
+		List<Tasks> result = dao.findIncompleteTasks(loginUser);
 //		LocalDate registerDate = LocalDate.of(2024, 6, 7);
 //		LocalDateTime tentativeStartDateTime = LocalDateTime.of(2024,6,7,11,34,16,539491);
 //		LocalDateTime tentativeEndDateTime = LocalDateTime.of(2024,6,7,12,34,16,539491);

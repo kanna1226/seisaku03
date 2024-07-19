@@ -22,7 +22,7 @@ public class FindTasksDAO {
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 	
-	public List<Tasks> findTodayRegisterTasks(User loginUser) {
+	public List<Tasks> findIncompleteTasks(User loginUser) {
 		List<Tasks> taskList = new ArrayList<>();
 		
 		try {
@@ -32,12 +32,9 @@ public class FindTasksDAO {
 		}
 		
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
-			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND REGISTER_DATE = ?　AND END_DATETIME IS NULL ORDER BY TENTATIVE_START_DATE";
+			String sql = "SELECT * FROM TASKS WHERE USER_ID = ? AND END_DATETIME IS NULL ORDER BY TENTATIVE_START_DATE";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, loginUser.getUserId());
-			LocalDate today_LocalDate = LocalDate.now();
-			Date today = java.sql.Date.valueOf(today_LocalDate);
-			pStmt.setDate(2, today);
 			
 			ResultSet rs = pStmt.executeQuery();
 			

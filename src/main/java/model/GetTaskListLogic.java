@@ -5,9 +5,9 @@ import java.util.List;
 import dao.FindTasksDAO;
 
 public class GetTaskListLogic {
-	public List<Tasks> getTodayRegisterTasksExecute(User loginUser) {
+	public List<Tasks> getIncompleteTasksExecute(User loginUser) {
 		FindTasksDAO dao = new FindTasksDAO();
-		List<Tasks> taskList = dao.findTodayRegisterTasks(loginUser);
+		List<Tasks> taskList = dao.findIncompleteTasks(loginUser);
 		return taskList;
 	}
 	

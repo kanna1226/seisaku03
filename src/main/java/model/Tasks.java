@@ -17,6 +17,7 @@ public class Tasks implements Serializable {
 	private long taskHandleDuration;
 	
 	public Tasks() {}
+	//新規タスク登録用
 	public Tasks(String userId, int taskGroup, String taskContent, LocalDate tentativeStartDate, long tentativeEndTime) {
 		this.userId = userId;
 		this.taskGroupId = taskGroup;
@@ -25,6 +26,7 @@ public class Tasks implements Serializable {
 		this.tentativeStartDate = tentativeStartDate;
 		this.tentativeEndTime = tentativeEndTime;
 	}
+	//タスク取得用
 	public Tasks(int taskId, String userId, int taskGroup, String taskContent, LocalDate registerDate,
 			LocalDate tentativeStartDate, long tentativeEndTime, LocalDateTime startDateTime, LocalDateTime endDateTime) {
 		this.taskId = taskId;
@@ -36,6 +38,14 @@ public class Tasks implements Serializable {
 		this.tentativeEndTime = tentativeEndTime;
 		this.startDateTime = startDateTime;
 		this.endDateTime = endDateTime;
+	}
+	//タスク変更用
+	public Tasks(int taskId, int taskGroupId, String taskContent, LocalDate tentativeStartDate, long tentativeEndTime) {
+		this.taskId = taskId;
+		this.taskGroupId = taskGroupId;
+		this.taskContent = taskContent;
+		this.tentativeStartDate = tentativeStartDate;
+		this.tentativeEndTime = tentativeEndTime;
 	}
 	
 	public int getTaskId() { return taskId; }
